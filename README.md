@@ -13,11 +13,22 @@
 
 ## 主な機能
 
+### Database Service
 - データベーステーブル一覧表示
 - SQLクエリエディタ
 - クエリ結果のテーブル表示
 - リアルタイムクエリ実行
-- エラーハンドリング
+
+### Ryohi Services (db_service)
+- ETC明細管理 (`/api/v1/db/etc-meisai`)
+- 経費精算管理 (`/api/v1/db/dtako-uriage-keihi`)
+- フェリー運行管理 (`/api/v1/db/dtako-ferry-rows`)
+- ETC明細マッピング (`/api/v1/db/etc-meisai-mapping`)
+
+### Download Services (etc_meisai_scraper)
+- ETC明細ダウンロード（同期/非同期）
+- ストリーミングダウンロード
+- アカウント管理
 
 ## セットアップ
 
@@ -26,6 +37,24 @@
 ```bash
 npm install
 ```
+
+### Protocol Buffersの生成
+
+protoファイルからTypeScriptコードを生成：
+
+```bash
+npm run proto
+# または
+cmd /c generate-proto.bat
+```
+
+これにより、以下のprotoファイルからTypeScriptクライアントが生成されます：
+- `proto/database.proto` - DatabaseService
+- `proto/ryohi.proto` - ETCMeisai, DTakoUriageKeihi, DTakoFerryRows, ETCMeisaiMapping
+- `proto/download.proto` - DownloadService
+- `proto/download_buffer.proto` - DownloadBufferService
+
+生成されたファイルは `src/generated/` に出力されます。
 
 ### 開発サーバーの起動
 
@@ -109,26 +138,44 @@ const transport = new GrpcWebFetchTransport({
 ```
 desktop-server-front/
 ├── .github/
-│   └── workflows/         # GitHub Actions ワークフロー
-│       ├── build.yml      # ビルドワークフロー
-│       └── release.yml    # リリースワークフロー
+│   └── workflows/              # GitHub Actions ワークフロー
+│       ├── build.yml           # ビルドワークフロー
+│       └── release.yml         # リリースワークフロー
 ├── proto/
-│   └── database.proto     # Protocol Buffers定義
+│   ├── database.proto          # DatabaseService定義
+│   ├── ryohi.proto             # Ryohiサービス定義 (db_service)
+│   ├── download.proto          # DownloadService定義
+│   ├── download_buffer.proto   # DownloadBufferService定義
+│   └── google/                 # Google Protocol Buffers依存関係
+│       ├── api/
+│       │   ├── annotations.proto
+│       │   └── http.proto
+│       └── protobuf/
+│           └── timestamp.proto
 ├── scripts/
-│   └── copy-to-backend.js # バックエンドコピースクリプト
+│   ├── copy-to-backend.js      # バックエンドコピースクリプト
+│   └── generate-proto.js       # Proto生成スクリプト (Node.js)
 ├── src/
 │   ├── api/
-│   │   └── client.ts      # gRPC-Webクライアント
+│   │   └── client.ts           # gRPC-Webクライアント (全サービス)
 │   ├── components/
 │   │   ├── QueryResults.tsx
 │   │   ├── SqlEditor.tsx
 │   │   └── TableList.tsx
-│   ├── generated/         # 自動生成されたProtoBufコード
+│   ├── generated/              # 自動生成されたProtoBufコード
 │   │   ├── database.ts
-│   │   └── database.client.ts
+│   │   ├── database.client.ts
+│   │   ├── ryohi.ts
+│   │   ├── ryohi.client.ts
+│   │   ├── download.ts
+│   │   ├── download.client.ts
+│   │   ├── download_buffer.ts
+│   │   └── download_buffer.client.ts
 │   ├── App.tsx
 │   ├── main.tsx
 │   └── index.css
+├── generate-proto.bat          # Proto生成スクリプト (Windows)
+├── protoc-gen-ts.bat           # protoc-genラッパー (Windows)
 ├── package.json
 ├── vite.config.ts
 └── tailwind.config.js

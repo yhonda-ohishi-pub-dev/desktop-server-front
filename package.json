@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "build:backend": "npm run build && node scripts/copy-to-backend.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "proto": "cmd /c generate-proto.bat"
   },
   "dependencies": {
     "@protobuf-ts/grpcweb-transport": "^2.11.1",
