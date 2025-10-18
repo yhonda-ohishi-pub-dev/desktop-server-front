@@ -3,6 +3,7 @@ import { databaseClient } from './api/client'
 import SqlEditor from './components/SqlEditor'
 import TableList from './components/TableList'
 import QueryResults from './components/QueryResults'
+import ETCMeisaiList from './components/ETCMeisaiList'
 
 interface QueryResult {
   columns: { [key: string]: string }
@@ -47,7 +48,13 @@ function App() {
         <h1 className="text-2xl font-bold">Desktop Database Manager</h1>
       </header>
 
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 space-y-6">
+        {/* ETC明細テスト用 */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <ETCMeisaiList />
+        </div>
+
+        {/* 既存のデータベースクエリ機能 */}
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-3">
             <TableList tables={tables} onTableClick={(table: string) => setSql(`SELECT * FROM ${table}`)} />
