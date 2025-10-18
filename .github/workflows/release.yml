@@ -1,8 +1,9 @@
 name: Release Frontend
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build-and-release:
@@ -28,9 +29,56 @@ jobs:
       run: |
         Compress-Archive -Path dist/* -DestinationPath "desktop-server-frontend-${{ github.ref_name }}.zip"
 
-    - name: Upload to GitHub Release
+    - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: desktop-server-frontend-${{ github.ref_name }}.zip
+        generate_release_notes: true
+        body: |
+          # Desktop Server Frontend ${{ github.ref_name }}
+
+          Desktop Server用のWebフロントエンドリリースです。
+
+          ## 主な機能
+
+          - 📊 データベーステーブル一覧表示
+          - ✍️ SQLクエリエディタ
+          - 📋 クエリ結果のテーブル表示
+          - 🔄 リアルタイムクエリ実行
+          - ⚠️ エラーハンドリング
+
+          ## 技術スタック
+
+          - React 19 + TypeScript
+          - Vite (ビルドツール)
+          - TailwindCSS (スタイリング)
+          - gRPC-Web (バックエンド通信)
+          - Protocol Buffers
+
+          ## インストール方法
+
+          1. ビルド済みアーティファクト `desktop-server-frontend-${{ github.ref_name }}.zip` をダウンロード
+          2. 解凍してバックエンドの `desktop-sv/dist/` にコピー
+          3. バックエンドサーバー起動後、http://localhost:8080 でアクセス
+
+          ## 開発者向け
+
+          ```bash
+          # 依存関係インストール
+          npm install
+
+          # 開発サーバー起動
+          npm run dev
+
+          # ビルド
+          npm run build
+
+          # バックエンドに統合
+          npm run build:backend
+          ```
+
+          ---
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
