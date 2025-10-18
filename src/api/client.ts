@@ -10,7 +10,7 @@ import { DownloadServiceClient } from "../generated/download.client";
 import { DownloadBufferServiceClient } from "../generated/download_buffer.client";
 
 const transport = new GrpcWebFetchTransport({
-  baseUrl: "http://localhost:8080",
+  baseUrl: "http://localhost:8080/api",  // desktop-serverのgRPC-Webエンドポイント
 });
 
 // Database Service
