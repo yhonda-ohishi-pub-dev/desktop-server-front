@@ -6,7 +6,7 @@ function App() {
       <header className="bg-white shadow-md border-b border-gray-200">
         <div className="container mx-auto px-6 py-5">
           <h1 className="text-3xl font-bold text-gray-800">ETC明細管理システム</h1>
-          <p className="text-sm text-gray-600 mt-1">Desktop Server Frontend v1.3.0</p>
+          <p className="text-sm text-gray-600 mt-1">Desktop Server Frontend v1.4.0</p>
         </div>
       </header>
 
