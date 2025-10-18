@@ -1,0 +1,49 @@
+name: Build Frontend
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build frontend
+      run: npm run build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-dist
+        path: dist/
+        retention-days: 30
+
+    - name: Create release archive
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        cd dist
+        tar -czf ../frontend-dist.tar.gz .
+        cd ..
+
+    - name: Upload release archive
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-release
+        path: frontend-dist.tar.gz
+        retention-days: 90

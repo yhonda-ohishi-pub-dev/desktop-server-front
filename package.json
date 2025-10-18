@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:backend": "npm run build && node scripts/copy-to-backend.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
