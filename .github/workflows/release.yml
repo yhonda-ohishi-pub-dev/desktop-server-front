@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code
@@ -25,14 +25,13 @@ jobs:
       run: npm run build
 
     - name: Create release archive
+      shell: pwsh
       run: |
-        cd dist
-        tar -czf ../desktop-server-frontend-${{ github.ref_name }}.tar.gz .
-        cd ..
+        Compress-Archive -Path dist/* -DestinationPath "desktop-server-frontend-${{ github.ref_name }}.zip"
 
     - name: Upload to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: desktop-server-frontend-${{ github.ref_name }}.tar.gz
+        files: desktop-server-frontend-${{ github.ref_name }}.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
