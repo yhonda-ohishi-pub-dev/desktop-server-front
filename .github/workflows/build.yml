@@ -24,24 +24,3 @@ jobs:
 
     - name: Build frontend
       run: npm run build
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: frontend-dist
-        path: dist/
-        retention-days: 30
-
-    - name: Create release archive
-      if: startsWith(github.ref, 'refs/tags/')
-      shell: pwsh
-      run: |
-        Compress-Archive -Path dist/* -DestinationPath frontend-dist.zip
-
-    - name: Upload release archive
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: actions/upload-artifact@v4
-      with:
-        name: frontend-release
-        path: frontend-dist.zip
-        retention-days: 90
