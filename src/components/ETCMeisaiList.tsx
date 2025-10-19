@@ -3,7 +3,7 @@ import { etcMeisaiClient, databaseClient, downloadClient } from '../api/client';
 import type { ETCMeisai } from '../generated/ryohi';
 import type { ETCMeisaiListRef } from '../App';
 
-const ETCMeisaiList = forwardRef<ETCMeisaiListRef, {}>((props, ref) => {
+const ETCMeisaiList = forwardRef<ETCMeisaiListRef, {}>((_, ref) => {
   const [etcList, setEtcList] = useState<ETCMeisai[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -274,7 +274,7 @@ const ETCMeisaiList = forwardRef<ETCMeisaiListRef, {}>((props, ref) => {
       item.dateToDate?.toLowerCase().includes(searchLower) ||
       item.icFr?.toLowerCase().includes(searchLower) ||
       item.icTo?.toLowerCase().includes(searchLower) ||
-      item.shashu?.toLowerCase().includes(searchLower) ||
+      item.shashu?.toString().toLowerCase().includes(searchLower) ||
       item.etcNum?.toLowerCase().includes(searchLower)
     );
   }, [etcList, searchTerm]);
