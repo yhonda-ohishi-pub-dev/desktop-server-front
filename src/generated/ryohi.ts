@@ -95,19 +95,19 @@ export interface ETCMeisai {
     /**
      * @generated from protobuf field: string date_to = 3
      */
-    dateTo: string;
+    dateTo: string; // RFC3339形式推奨 (例: 2025-10-18T00:00:00Z)
     /**
      * @generated from protobuf field: string date_to_date = 4
      */
-    dateToDate: string;
+    dateToDate: string; // YYYY-MM-DD形式 (例: 2025-10-18)
     /**
-     * @generated from protobuf field: string ic_fr = 5
+     * @generated from protobuf field: optional string ic_fr = 5
      */
-    icFr: string;
+    icFr?: string; // 入口IC不明の場合は省略可（実データの22.3%が空）
     /**
      * @generated from protobuf field: string ic_to = 6
      */
-    icTo: string;
+    icTo: string; // 出口IC（必須）
     /**
      * @generated from protobuf field: optional int32 price_bf = 7
      */
@@ -668,6 +668,1011 @@ export interface GetDTakoRowIDByHashResponse {
     dtakoRowIds: string[];
 }
 /**
+ * 車輌マスタデータ（本番DB）
+ *
+ * @generated from protobuf message ryohi.DTakoCars
+ */
+export interface DTakoCars {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+    /**
+     * @generated from protobuf field: string car_code = 2
+     */
+    carCode: string;
+    /**
+     * @generated from protobuf field: string car_cc = 3
+     */
+    carCc: string;
+    /**
+     * @generated from protobuf field: string car_name = 4
+     */
+    carName: string;
+    /**
+     * @generated from protobuf field: int32 belong_office_code = 5
+     */
+    belongOfficeCode: number;
+    /**
+     * @generated from protobuf field: int32 highway_car_type = 6
+     */
+    highwayCarType: number;
+    /**
+     * @generated from protobuf field: int32 ferry_car_type = 7
+     */
+    ferryCarType: number;
+    /**
+     * @generated from protobuf field: int32 evaluation_class_code = 8
+     */
+    evaluationClassCode: number;
+    /**
+     * @generated from protobuf field: int32 idling_type = 9
+     */
+    idlingType: number;
+    /**
+     * @generated from protobuf field: int32 max_load_weight_kg = 10
+     */
+    maxLoadWeightKg: number;
+    /**
+     * @generated from protobuf field: int32 car_class1 = 11
+     */
+    carClass1: number;
+    /**
+     * @generated from protobuf field: int32 car_class2 = 12
+     */
+    carClass2: number;
+    /**
+     * @generated from protobuf field: int32 car_class3 = 13
+     */
+    carClass3: number;
+    /**
+     * @generated from protobuf field: int32 car_class4 = 14
+     */
+    carClass4: number;
+    /**
+     * @generated from protobuf field: int32 car_class5 = 15
+     */
+    carClass5: number;
+    /**
+     * @generated from protobuf field: int32 operation_type = 16
+     */
+    operationType: number;
+}
+/**
+ * イベント情報データ（本番DB）
+ *
+ * @generated from protobuf message ryohi.DTakoEvents
+ */
+export interface DTakoEvents {
+    /**
+     * @generated from protobuf field: int64 id = 1
+     */
+    id: bigint;
+    /**
+     * @generated from protobuf field: string operation_no = 2
+     */
+    operationNo: string;
+    /**
+     * @generated from protobuf field: string read_date = 3
+     */
+    readDate: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: int32 car_code = 4
+     */
+    carCode: number;
+    /**
+     * @generated from protobuf field: string car_cc = 5
+     */
+    carCc: string;
+    /**
+     * @generated from protobuf field: int32 target_driver_type = 6
+     */
+    targetDriverType: number;
+    /**
+     * @generated from protobuf field: int32 driver_code1 = 7
+     */
+    driverCode1: number;
+    /**
+     * @generated from protobuf field: int32 target_driver_code = 8
+     */
+    targetDriverCode: number;
+    /**
+     * @generated from protobuf field: string start_datetime = 9
+     */
+    startDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string end_datetime = 10
+     */
+    endDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional int32 event_code = 11
+     */
+    eventCode?: number;
+    /**
+     * @generated from protobuf field: string event_name = 12
+     */
+    eventName: string;
+    /**
+     * @generated from protobuf field: double start_mileage = 13
+     */
+    startMileage: number;
+    /**
+     * @generated from protobuf field: double end_mileage = 14
+     */
+    endMileage: number;
+    /**
+     * @generated from protobuf field: int32 section_time = 15
+     */
+    sectionTime: number;
+    /**
+     * @generated from protobuf field: double section_distance = 16
+     */
+    sectionDistance: number;
+    /**
+     * @generated from protobuf field: optional int32 start_city_code = 17
+     */
+    startCityCode?: number;
+    /**
+     * @generated from protobuf field: string start_city_name = 18
+     */
+    startCityName: string;
+    /**
+     * @generated from protobuf field: optional int32 end_city_code = 19
+     */
+    endCityCode?: number;
+    /**
+     * @generated from protobuf field: string end_city_name = 20
+     */
+    endCityName: string;
+    /**
+     * @generated from protobuf field: optional int32 start_place_code = 21
+     */
+    startPlaceCode?: number;
+    /**
+     * @generated from protobuf field: string start_place_name = 22
+     */
+    startPlaceName: string;
+    /**
+     * @generated from protobuf field: optional int32 end_place_code = 23
+     */
+    endPlaceCode?: number;
+    /**
+     * @generated from protobuf field: string end_place_name = 24
+     */
+    endPlaceName: string;
+    /**
+     * @generated from protobuf field: optional int32 start_gps_valid = 25
+     */
+    startGpsValid?: number;
+    /**
+     * @generated from protobuf field: optional int64 start_gps_latitude = 26
+     */
+    startGpsLatitude?: bigint;
+    /**
+     * @generated from protobuf field: optional int64 start_gps_longitude = 27
+     */
+    startGpsLongitude?: bigint;
+    /**
+     * @generated from protobuf field: optional int32 end_gps_valid = 28
+     */
+    endGpsValid?: number;
+    /**
+     * @generated from protobuf field: optional int64 end_gps_latitude = 29
+     */
+    endGpsLatitude?: bigint;
+    /**
+     * @generated from protobuf field: optional int64 end_gps_longitude = 30
+     */
+    endGpsLongitude?: bigint;
+}
+/**
+ * 運行データ（本番DB）
+ *
+ * @generated from protobuf message ryohi.DTakoRows
+ */
+export interface DTakoRows {
+    /**
+     * @generated from protobuf field: string id = 1
+     */
+    id: string;
+    /**
+     * @generated from protobuf field: string operation_no = 2
+     */
+    operationNo: string;
+    /**
+     * @generated from protobuf field: string read_date = 3
+     */
+    readDate: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string operation_date = 4
+     */
+    operationDate: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: int32 car_code = 5
+     */
+    carCode: number;
+    /**
+     * @generated from protobuf field: string car_cc = 6
+     */
+    carCc: string;
+    /**
+     * @generated from protobuf field: optional int32 driver_code1 = 7
+     */
+    driverCode1?: number;
+    /**
+     * @generated from protobuf field: int32 target_driver_type = 8
+     */
+    targetDriverType: number;
+    /**
+     * @generated from protobuf field: int32 target_driver_code = 9
+     */
+    targetDriverCode: number;
+    /**
+     * @generated from protobuf field: string start_work_datetime = 10
+     */
+    startWorkDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string end_work_datetime = 11
+     */
+    endWorkDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string departure_datetime = 12
+     */
+    departureDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string return_datetime = 13
+     */
+    returnDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: double departure_meter = 14
+     */
+    departureMeter: number;
+    /**
+     * @generated from protobuf field: double return_meter = 15
+     */
+    returnMeter: number;
+    /**
+     * @generated from protobuf field: double total_distance = 16
+     */
+    totalDistance: number;
+    /**
+     * @generated from protobuf field: optional double loaded_distance = 17
+     */
+    loadedDistance?: number;
+    /**
+     * @generated from protobuf field: optional string destination_city_name = 18
+     */
+    destinationCityName?: string;
+    /**
+     * @generated from protobuf field: optional string destination_place_name = 19
+     */
+    destinationPlaceName?: string;
+    /**
+     * @generated from protobuf field: int32 general_road_drive_time = 20
+     */
+    generalRoadDriveTime: number;
+    /**
+     * @generated from protobuf field: int32 highway_drive_time = 21
+     */
+    highwayDriveTime: number;
+    /**
+     * @generated from protobuf field: int32 bypass_drive_time = 22
+     */
+    bypassDriveTime: number;
+    /**
+     * @generated from protobuf field: int32 loaded_drive_time = 23
+     */
+    loadedDriveTime: number;
+    /**
+     * @generated from protobuf field: int32 empty_drive_time = 24
+     */
+    emptyDriveTime: number;
+    /**
+     * @generated from protobuf field: int32 work1_time = 25
+     */
+    work1Time: number;
+    /**
+     * @generated from protobuf field: int32 work2_time = 26
+     */
+    work2Time: number;
+    /**
+     * @generated from protobuf field: int32 work3_time = 27
+     */
+    work3Time: number;
+    /**
+     * @generated from protobuf field: int32 work4_time = 28
+     */
+    work4Time: number;
+    /**
+     * @generated from protobuf field: double status1_distance = 29
+     */
+    status1Distance: number;
+    /**
+     * @generated from protobuf field: int32 status1_time = 30
+     */
+    status1Time: number;
+}
+/**
+ * ETCカード番号データ（本番DB）
+ *
+ * @generated from protobuf message ryohi.ETCNum
+ */
+export interface ETCNum {
+    /**
+     * @generated from protobuf field: string etc_card_num = 1
+     */
+    etcCardNum: string;
+    /**
+     * @generated from protobuf field: string car_id = 2
+     */
+    carId: string;
+    /**
+     * @generated from protobuf field: optional string start_date_time = 3
+     */
+    startDateTime?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string due_date_time = 4
+     */
+    dueDateTime?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional bool to_change = 5
+     */
+    toChange?: boolean;
+}
+/**
+ * DTakoCars用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetDTakoCarsRequest
+ */
+export interface GetDTakoCarsRequest {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+}
+/**
+ * @generated from protobuf message ryohi.GetDTakoCarsByCarCodeRequest
+ */
+export interface GetDTakoCarsByCarCodeRequest {
+    /**
+     * @generated from protobuf field: string car_code = 1
+     */
+    carCode: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoCarsRequest
+ */
+export interface ListDTakoCarsRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+}
+/**
+ * @generated from protobuf message ryohi.DTakoCarsResponse
+ */
+export interface DTakoCarsResponse {
+    /**
+     * @generated from protobuf field: ryohi.DTakoCars dtako_cars = 1
+     */
+    dtakoCars?: DTakoCars;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoCarsResponse
+ */
+export interface ListDTakoCarsResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.DTakoCars items = 1
+     */
+    items: DTakoCars[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * DTakoEvents用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetDTakoEventsRequest
+ */
+export interface GetDTakoEventsRequest {
+    /**
+     * @generated from protobuf field: int64 id = 1
+     */
+    id: bigint;
+}
+/**
+ * @generated from protobuf message ryohi.GetDTakoEventsByOperationNoRequest
+ */
+export interface GetDTakoEventsByOperationNoRequest {
+    /**
+     * @generated from protobuf field: string operation_no = 1
+     */
+    operationNo: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoEventsRequest
+ */
+export interface ListDTakoEventsRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+    /**
+     * @generated from protobuf field: optional string order_by = 3
+     */
+    orderBy?: string; // 例: "開始日時 DESC", "id ASC"
+}
+/**
+ * @generated from protobuf message ryohi.DTakoEventsResponse
+ */
+export interface DTakoEventsResponse {
+    /**
+     * @generated from protobuf field: ryohi.DTakoEvents dtako_events = 1
+     */
+    dtakoEvents?: DTakoEvents;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoEventsResponse
+ */
+export interface ListDTakoEventsResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.DTakoEvents items = 1
+     */
+    items: DTakoEvents[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * DTakoRows用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetDTakoRowsRequest
+ */
+export interface GetDTakoRowsRequest {
+    /**
+     * @generated from protobuf field: string id = 1
+     */
+    id: string;
+}
+/**
+ * @generated from protobuf message ryohi.GetDTakoRowsByOperationNoRequest
+ */
+export interface GetDTakoRowsByOperationNoRequest {
+    /**
+     * @generated from protobuf field: string operation_no = 1
+     */
+    operationNo: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoRowsRequest
+ */
+export interface ListDTakoRowsRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+    /**
+     * @generated from protobuf field: optional string order_by = 3
+     */
+    orderBy?: string; // 例: "読取日 DESC", "id ASC"
+}
+/**
+ * @generated from protobuf message ryohi.DTakoRowsResponse
+ */
+export interface DTakoRowsResponse {
+    /**
+     * @generated from protobuf field: ryohi.DTakoRows dtako_rows = 1
+     */
+    dtakoRows?: DTakoRows;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoRowsResponse
+ */
+export interface ListDTakoRowsResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.DTakoRows items = 1
+     */
+    items: DTakoRows[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * ETCNum用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetETCNumByETCCardNumRequest
+ */
+export interface GetETCNumByETCCardNumRequest {
+    /**
+     * @generated from protobuf field: string etc_card_num = 1
+     */
+    etcCardNum: string;
+}
+/**
+ * @generated from protobuf message ryohi.GetETCNumByCarIDRequest
+ */
+export interface GetETCNumByCarIDRequest {
+    /**
+     * @generated from protobuf field: string car_id = 1
+     */
+    carId: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListETCNumRequest
+ */
+export interface ListETCNumRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+}
+/**
+ * @generated from protobuf message ryohi.ListETCNumResponse
+ */
+export interface ListETCNumResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.ETCNum items = 1
+     */
+    items: ETCNum[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * DTakoFerryRowsProd（本番DB）データ
+ *
+ * @generated from protobuf message ryohi.DTakoFerryRowsProd
+ */
+export interface DTakoFerryRowsProd {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+    /**
+     * @generated from protobuf field: string unko_no = 2
+     */
+    unkoNo: string;
+    /**
+     * @generated from protobuf field: string unko_date = 3
+     */
+    unkoDate: string; // YYYY-MM-DD形式
+    /**
+     * @generated from protobuf field: string yomitori_date = 4
+     */
+    yomitoriDate: string; // YYYY-MM-DD形式
+    /**
+     * @generated from protobuf field: int32 jigyosho_cd = 5
+     */
+    jigyoshoCd: number;
+    /**
+     * @generated from protobuf field: string jigyosho_name = 6
+     */
+    jigyoshoName: string;
+    /**
+     * @generated from protobuf field: int32 sharyo_cd = 7
+     */
+    sharyoCd: number;
+    /**
+     * @generated from protobuf field: string sharyo_name = 8
+     */
+    sharyoName: string;
+    /**
+     * @generated from protobuf field: int32 jomuin_cd1 = 9
+     */
+    jomuinCd1: number;
+    /**
+     * @generated from protobuf field: string jomuin_name1 = 10
+     */
+    jomuinName1: string;
+    /**
+     * @generated from protobuf field: int32 taisho_jomuin_kbn = 11
+     */
+    taishoJomuinKbn: number;
+    /**
+     * @generated from protobuf field: string kaishi_datetime = 12
+     */
+    kaishiDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: string shuryo_datetime = 13
+     */
+    shuryoDatetime: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: int32 ferry_company_cd = 14
+     */
+    ferryCompanyCd: number;
+    /**
+     * @generated from protobuf field: string ferry_company_name = 15
+     */
+    ferryCompanyName: string;
+    /**
+     * @generated from protobuf field: int32 noriba_cd = 16
+     */
+    noribaCd: number;
+    /**
+     * @generated from protobuf field: string noriba_name = 17
+     */
+    noribaName: string;
+    /**
+     * @generated from protobuf field: string bin = 18
+     */
+    bin: string;
+    /**
+     * @generated from protobuf field: int32 oriba_cd = 19
+     */
+    oribaCd: number;
+    /**
+     * @generated from protobuf field: string oriba_name = 20
+     */
+    oribaName: string;
+    /**
+     * @generated from protobuf field: int32 seisan_kbn = 21
+     */
+    seisanKbn: number;
+    /**
+     * @generated from protobuf field: string seisan_kbn_name = 22
+     */
+    seisanKbnName: string;
+    /**
+     * @generated from protobuf field: int32 hyojun_ryokin = 23
+     */
+    hyojunRyokin: number;
+    /**
+     * @generated from protobuf field: int32 keiyaku_ryokin = 24
+     */
+    keiyakuRyokin: number;
+    /**
+     * @generated from protobuf field: int32 koso_shashu_kbn = 25
+     */
+    kosoShashuKbn: number;
+    /**
+     * @generated from protobuf field: string koso_shashu_kbn_name = 26
+     */
+    kosoShashuKbnName: string;
+    /**
+     * @generated from protobuf field: int32 minashi_kyori = 27
+     */
+    minashiKyori: number;
+    /**
+     * @generated from protobuf field: optional string ferry_srch = 28
+     */
+    ferrySrch?: string;
+}
+/**
+ * DTakoFerryRowsProd用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetDTakoFerryRowsProdRequest
+ */
+export interface GetDTakoFerryRowsProdRequest {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+}
+/**
+ * @generated from protobuf message ryohi.GetDTakoFerryRowsProdByUnkoNoRequest
+ */
+export interface GetDTakoFerryRowsProdByUnkoNoRequest {
+    /**
+     * @generated from protobuf field: string unko_no = 1
+     */
+    unkoNo: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoFerryRowsProdRequest
+ */
+export interface ListDTakoFerryRowsProdRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+}
+/**
+ * @generated from protobuf message ryohi.DTakoFerryRowsProdResponse
+ */
+export interface DTakoFerryRowsProdResponse {
+    /**
+     * @generated from protobuf field: ryohi.DTakoFerryRowsProd dtako_ferry_rows = 1
+     */
+    dtakoFerryRows?: DTakoFerryRowsProd;
+}
+/**
+ * @generated from protobuf message ryohi.ListDTakoFerryRowsProdResponse
+ */
+export interface ListDTakoFerryRowsProdResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.DTakoFerryRowsProd items = 1
+     */
+    items: DTakoFerryRowsProd[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * Cars メッセージ
+ *
+ * @generated from protobuf message ryohi.Cars
+ */
+export interface Cars {
+    /**
+     * @generated from protobuf field: string id = 1
+     */
+    id: string;
+    /**
+     * @generated from protobuf field: int32 id4 = 2
+     */
+    id4: number;
+    /**
+     * @generated from protobuf field: optional string name = 3
+     */
+    name?: string;
+    /**
+     * @generated from protobuf field: optional string name_r = 4
+     */
+    nameR?: string;
+    /**
+     * @generated from protobuf field: optional string shashu = 5
+     */
+    shashu?: string;
+    /**
+     * @generated from protobuf field: optional double sekisai = 6
+     */
+    sekisai?: number;
+    /**
+     * @generated from protobuf field: optional double youseki = 7
+     */
+    youseki?: number;
+    /**
+     * @generated from protobuf field: optional string reg_date = 8
+     */
+    regDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string next_inspect_date = 9
+     */
+    nextInspectDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string parch_date = 10
+     */
+    parchDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string scrap_date = 11
+     */
+    scrapDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string bumon_code_id = 12
+     */
+    bumonCodeId?: string;
+    /**
+     * @generated from protobuf field: optional int32 driver_id = 13
+     */
+    driverId?: number;
+    /**
+     * @generated from protobuf field: optional int32 etc = 14
+     */
+    etc?: number;
+    /**
+     * @generated from protobuf field: int32 dai1 = 15
+     */
+    dai1: number;
+    /**
+     * @generated from protobuf field: int32 chu1 = 16
+     */
+    chu1: number;
+    /**
+     * @generated from protobuf field: int32 sho1 = 17
+     */
+    sho1: number;
+    /**
+     * @generated from protobuf field: int32 dai2 = 18
+     */
+    dai2: number;
+    /**
+     * @generated from protobuf field: int32 chu2 = 19
+     */
+    chu2: number;
+    /**
+     * @generated from protobuf field: int32 sho2 = 20
+     */
+    sho2: number;
+    /**
+     * @generated from protobuf field: optional string daichusho1 = 21
+     */
+    daichusho1?: string;
+    /**
+     * @generated from protobuf field: optional string daichusho2 = 22
+     */
+    daichusho2?: string;
+}
+/**
+ * Drivers メッセージ
+ *
+ * @generated from protobuf message ryohi.Drivers
+ */
+export interface Drivers {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+    /**
+     * @generated from protobuf field: optional string name = 2
+     */
+    name?: string;
+    /**
+     * @generated from protobuf field: optional string shain_r = 3
+     */
+    shainR?: string;
+    /**
+     * @generated from protobuf field: string bumon = 4
+     */
+    bumon: string;
+    /**
+     * @generated from protobuf field: optional string join_date = 5
+     */
+    joinDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string retire_date = 6
+     */
+    retireDate?: string; // RFC3339形式
+    /**
+     * @generated from protobuf field: optional string bunrui1 = 7
+     */
+    bunrui1?: string;
+    /**
+     * @generated from protobuf field: optional string bunrui2 = 8
+     */
+    bunrui2?: string;
+    /**
+     * @generated from protobuf field: optional int32 kubun = 9
+     */
+    kubun?: number;
+    /**
+     * @generated from protobuf field: int32 kinmu_taikei = 10
+     */
+    kinmuTaikei: number;
+}
+/**
+ * Cars用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetCarsRequest
+ */
+export interface GetCarsRequest {
+    /**
+     * @generated from protobuf field: string id = 1
+     */
+    id: string;
+}
+/**
+ * @generated from protobuf message ryohi.GetCarsByBumonCodeIDRequest
+ */
+export interface GetCarsByBumonCodeIDRequest {
+    /**
+     * @generated from protobuf field: string bumon_code_id = 1
+     */
+    bumonCodeId: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListCarsRequest
+ */
+export interface ListCarsRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+    /**
+     * @generated from protobuf field: optional string order_by = 3
+     */
+    orderBy?: string; // 例: "id ASC", "name DESC"
+}
+/**
+ * @generated from protobuf message ryohi.CarsResponse
+ */
+export interface CarsResponse {
+    /**
+     * @generated from protobuf field: ryohi.Cars cars = 1
+     */
+    cars?: Cars;
+}
+/**
+ * @generated from protobuf message ryohi.ListCarsResponse
+ */
+export interface ListCarsResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.Cars items = 1
+     */
+    items: Cars[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
+ * Drivers用リクエスト/レスポンス
+ *
+ * @generated from protobuf message ryohi.GetDriversRequest
+ */
+export interface GetDriversRequest {
+    /**
+     * @generated from protobuf field: int32 id = 1
+     */
+    id: number;
+}
+/**
+ * @generated from protobuf message ryohi.GetDriversByBumonRequest
+ */
+export interface GetDriversByBumonRequest {
+    /**
+     * @generated from protobuf field: string bumon = 1
+     */
+    bumon: string;
+}
+/**
+ * @generated from protobuf message ryohi.ListDriversRequest
+ */
+export interface ListDriversRequest {
+    /**
+     * @generated from protobuf field: int32 limit = 1
+     */
+    limit: number;
+    /**
+     * @generated from protobuf field: int32 offset = 2
+     */
+    offset: number;
+    /**
+     * @generated from protobuf field: optional string order_by = 3
+     */
+    orderBy?: string; // 例: "id ASC", "name DESC"
+}
+/**
+ * @generated from protobuf message ryohi.DriversResponse
+ */
+export interface DriversResponse {
+    /**
+     * @generated from protobuf field: ryohi.Drivers drivers = 1
+     */
+    drivers?: Drivers;
+}
+/**
+ * @generated from protobuf message ryohi.ListDriversResponse
+ */
+export interface ListDriversResponse {
+    /**
+     * @generated from protobuf field: repeated ryohi.Drivers items = 1
+     */
+    items: Drivers[];
+    /**
+     * @generated from protobuf field: int32 total_count = 2
+     */
+    totalCount: number;
+}
+/**
  * 共通メッセージ
  *
  * @generated from protobuf message ryohi.Empty
@@ -832,7 +1837,7 @@ class ETCMeisai$Type extends MessageType<ETCMeisai> {
             { no: 2, name: "date_fr", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "date_to", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "date_to_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "ic_fr", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "ic_fr", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 6, name: "ic_to", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 7, name: "price_bf", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 8, name: "descount", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
@@ -849,7 +1854,6 @@ class ETCMeisai$Type extends MessageType<ETCMeisai> {
         message.id = 0n;
         message.dateTo = "";
         message.dateToDate = "";
-        message.icFr = "";
         message.icTo = "";
         message.price = 0;
         message.shashu = 0;
@@ -876,7 +1880,7 @@ class ETCMeisai$Type extends MessageType<ETCMeisai> {
                 case /* string date_to_date */ 4:
                     message.dateToDate = reader.string();
                     break;
-                case /* string ic_fr */ 5:
+                case /* optional string ic_fr */ 5:
                     message.icFr = reader.string();
                     break;
                 case /* string ic_to */ 6:
@@ -930,8 +1934,8 @@ class ETCMeisai$Type extends MessageType<ETCMeisai> {
         /* string date_to_date = 4; */
         if (message.dateToDate !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.dateToDate);
-        /* string ic_fr = 5; */
-        if (message.icFr !== "")
+        /* optional string ic_fr = 5; */
+        if (message.icFr !== undefined)
             writer.tag(5, WireType.LengthDelimited).string(message.icFr);
         /* string ic_to = 6; */
         if (message.icTo !== "")
@@ -2898,6 +3902,3099 @@ class GetDTakoRowIDByHashResponse$Type extends MessageType<GetDTakoRowIDByHashRe
  */
 export const GetDTakoRowIDByHashResponse = new GetDTakoRowIDByHashResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class DTakoCars$Type extends MessageType<DTakoCars> {
+    constructor() {
+        super("ryohi.DTakoCars", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "car_code", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "car_cc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "car_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "belong_office_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 6, name: "highway_car_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "ferry_car_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "evaluation_class_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 9, name: "idling_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 10, name: "max_load_weight_kg", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 11, name: "car_class1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 12, name: "car_class2", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 13, name: "car_class3", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 14, name: "car_class4", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 15, name: "car_class5", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 16, name: "operation_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoCars>): DTakoCars {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        message.carCode = "";
+        message.carCc = "";
+        message.carName = "";
+        message.belongOfficeCode = 0;
+        message.highwayCarType = 0;
+        message.ferryCarType = 0;
+        message.evaluationClassCode = 0;
+        message.idlingType = 0;
+        message.maxLoadWeightKg = 0;
+        message.carClass1 = 0;
+        message.carClass2 = 0;
+        message.carClass3 = 0;
+        message.carClass4 = 0;
+        message.carClass5 = 0;
+        message.operationType = 0;
+        if (value !== undefined)
+            reflectionMergePartial<DTakoCars>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoCars): DTakoCars {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                case /* string car_code */ 2:
+                    message.carCode = reader.string();
+                    break;
+                case /* string car_cc */ 3:
+                    message.carCc = reader.string();
+                    break;
+                case /* string car_name */ 4:
+                    message.carName = reader.string();
+                    break;
+                case /* int32 belong_office_code */ 5:
+                    message.belongOfficeCode = reader.int32();
+                    break;
+                case /* int32 highway_car_type */ 6:
+                    message.highwayCarType = reader.int32();
+                    break;
+                case /* int32 ferry_car_type */ 7:
+                    message.ferryCarType = reader.int32();
+                    break;
+                case /* int32 evaluation_class_code */ 8:
+                    message.evaluationClassCode = reader.int32();
+                    break;
+                case /* int32 idling_type */ 9:
+                    message.idlingType = reader.int32();
+                    break;
+                case /* int32 max_load_weight_kg */ 10:
+                    message.maxLoadWeightKg = reader.int32();
+                    break;
+                case /* int32 car_class1 */ 11:
+                    message.carClass1 = reader.int32();
+                    break;
+                case /* int32 car_class2 */ 12:
+                    message.carClass2 = reader.int32();
+                    break;
+                case /* int32 car_class3 */ 13:
+                    message.carClass3 = reader.int32();
+                    break;
+                case /* int32 car_class4 */ 14:
+                    message.carClass4 = reader.int32();
+                    break;
+                case /* int32 car_class5 */ 15:
+                    message.carClass5 = reader.int32();
+                    break;
+                case /* int32 operation_type */ 16:
+                    message.operationType = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoCars, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        /* string car_code = 2; */
+        if (message.carCode !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.carCode);
+        /* string car_cc = 3; */
+        if (message.carCc !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.carCc);
+        /* string car_name = 4; */
+        if (message.carName !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.carName);
+        /* int32 belong_office_code = 5; */
+        if (message.belongOfficeCode !== 0)
+            writer.tag(5, WireType.Varint).int32(message.belongOfficeCode);
+        /* int32 highway_car_type = 6; */
+        if (message.highwayCarType !== 0)
+            writer.tag(6, WireType.Varint).int32(message.highwayCarType);
+        /* int32 ferry_car_type = 7; */
+        if (message.ferryCarType !== 0)
+            writer.tag(7, WireType.Varint).int32(message.ferryCarType);
+        /* int32 evaluation_class_code = 8; */
+        if (message.evaluationClassCode !== 0)
+            writer.tag(8, WireType.Varint).int32(message.evaluationClassCode);
+        /* int32 idling_type = 9; */
+        if (message.idlingType !== 0)
+            writer.tag(9, WireType.Varint).int32(message.idlingType);
+        /* int32 max_load_weight_kg = 10; */
+        if (message.maxLoadWeightKg !== 0)
+            writer.tag(10, WireType.Varint).int32(message.maxLoadWeightKg);
+        /* int32 car_class1 = 11; */
+        if (message.carClass1 !== 0)
+            writer.tag(11, WireType.Varint).int32(message.carClass1);
+        /* int32 car_class2 = 12; */
+        if (message.carClass2 !== 0)
+            writer.tag(12, WireType.Varint).int32(message.carClass2);
+        /* int32 car_class3 = 13; */
+        if (message.carClass3 !== 0)
+            writer.tag(13, WireType.Varint).int32(message.carClass3);
+        /* int32 car_class4 = 14; */
+        if (message.carClass4 !== 0)
+            writer.tag(14, WireType.Varint).int32(message.carClass4);
+        /* int32 car_class5 = 15; */
+        if (message.carClass5 !== 0)
+            writer.tag(15, WireType.Varint).int32(message.carClass5);
+        /* int32 operation_type = 16; */
+        if (message.operationType !== 0)
+            writer.tag(16, WireType.Varint).int32(message.operationType);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoCars
+ */
+export const DTakoCars = new DTakoCars$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoEvents$Type extends MessageType<DTakoEvents> {
+    constructor() {
+        super("ryohi.DTakoEvents", [
+            { no: 1, name: "id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 2, name: "operation_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "read_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "car_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "car_cc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "target_driver_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "driver_code1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "target_driver_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 9, name: "start_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 10, name: "end_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "event_code", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 12, name: "event_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 13, name: "start_mileage", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 14, name: "end_mileage", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 15, name: "section_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 16, name: "section_distance", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 17, name: "start_city_code", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 18, name: "start_city_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 19, name: "end_city_code", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 20, name: "end_city_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 21, name: "start_place_code", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 22, name: "start_place_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 23, name: "end_place_code", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 24, name: "end_place_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 25, name: "start_gps_valid", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 26, name: "start_gps_latitude", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 27, name: "start_gps_longitude", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 28, name: "end_gps_valid", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 29, name: "end_gps_latitude", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 30, name: "end_gps_longitude", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoEvents>): DTakoEvents {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0n;
+        message.operationNo = "";
+        message.readDate = "";
+        message.carCode = 0;
+        message.carCc = "";
+        message.targetDriverType = 0;
+        message.driverCode1 = 0;
+        message.targetDriverCode = 0;
+        message.startDatetime = "";
+        message.endDatetime = "";
+        message.eventName = "";
+        message.startMileage = 0;
+        message.endMileage = 0;
+        message.sectionTime = 0;
+        message.sectionDistance = 0;
+        message.startCityName = "";
+        message.endCityName = "";
+        message.startPlaceName = "";
+        message.endPlaceName = "";
+        if (value !== undefined)
+            reflectionMergePartial<DTakoEvents>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoEvents): DTakoEvents {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int64 id */ 1:
+                    message.id = reader.int64().toBigInt();
+                    break;
+                case /* string operation_no */ 2:
+                    message.operationNo = reader.string();
+                    break;
+                case /* string read_date */ 3:
+                    message.readDate = reader.string();
+                    break;
+                case /* int32 car_code */ 4:
+                    message.carCode = reader.int32();
+                    break;
+                case /* string car_cc */ 5:
+                    message.carCc = reader.string();
+                    break;
+                case /* int32 target_driver_type */ 6:
+                    message.targetDriverType = reader.int32();
+                    break;
+                case /* int32 driver_code1 */ 7:
+                    message.driverCode1 = reader.int32();
+                    break;
+                case /* int32 target_driver_code */ 8:
+                    message.targetDriverCode = reader.int32();
+                    break;
+                case /* string start_datetime */ 9:
+                    message.startDatetime = reader.string();
+                    break;
+                case /* string end_datetime */ 10:
+                    message.endDatetime = reader.string();
+                    break;
+                case /* optional int32 event_code */ 11:
+                    message.eventCode = reader.int32();
+                    break;
+                case /* string event_name */ 12:
+                    message.eventName = reader.string();
+                    break;
+                case /* double start_mileage */ 13:
+                    message.startMileage = reader.double();
+                    break;
+                case /* double end_mileage */ 14:
+                    message.endMileage = reader.double();
+                    break;
+                case /* int32 section_time */ 15:
+                    message.sectionTime = reader.int32();
+                    break;
+                case /* double section_distance */ 16:
+                    message.sectionDistance = reader.double();
+                    break;
+                case /* optional int32 start_city_code */ 17:
+                    message.startCityCode = reader.int32();
+                    break;
+                case /* string start_city_name */ 18:
+                    message.startCityName = reader.string();
+                    break;
+                case /* optional int32 end_city_code */ 19:
+                    message.endCityCode = reader.int32();
+                    break;
+                case /* string end_city_name */ 20:
+                    message.endCityName = reader.string();
+                    break;
+                case /* optional int32 start_place_code */ 21:
+                    message.startPlaceCode = reader.int32();
+                    break;
+                case /* string start_place_name */ 22:
+                    message.startPlaceName = reader.string();
+                    break;
+                case /* optional int32 end_place_code */ 23:
+                    message.endPlaceCode = reader.int32();
+                    break;
+                case /* string end_place_name */ 24:
+                    message.endPlaceName = reader.string();
+                    break;
+                case /* optional int32 start_gps_valid */ 25:
+                    message.startGpsValid = reader.int32();
+                    break;
+                case /* optional int64 start_gps_latitude */ 26:
+                    message.startGpsLatitude = reader.int64().toBigInt();
+                    break;
+                case /* optional int64 start_gps_longitude */ 27:
+                    message.startGpsLongitude = reader.int64().toBigInt();
+                    break;
+                case /* optional int32 end_gps_valid */ 28:
+                    message.endGpsValid = reader.int32();
+                    break;
+                case /* optional int64 end_gps_latitude */ 29:
+                    message.endGpsLatitude = reader.int64().toBigInt();
+                    break;
+                case /* optional int64 end_gps_longitude */ 30:
+                    message.endGpsLongitude = reader.int64().toBigInt();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoEvents, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int64 id = 1; */
+        if (message.id !== 0n)
+            writer.tag(1, WireType.Varint).int64(message.id);
+        /* string operation_no = 2; */
+        if (message.operationNo !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.operationNo);
+        /* string read_date = 3; */
+        if (message.readDate !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.readDate);
+        /* int32 car_code = 4; */
+        if (message.carCode !== 0)
+            writer.tag(4, WireType.Varint).int32(message.carCode);
+        /* string car_cc = 5; */
+        if (message.carCc !== "")
+            writer.tag(5, WireType.LengthDelimited).string(message.carCc);
+        /* int32 target_driver_type = 6; */
+        if (message.targetDriverType !== 0)
+            writer.tag(6, WireType.Varint).int32(message.targetDriverType);
+        /* int32 driver_code1 = 7; */
+        if (message.driverCode1 !== 0)
+            writer.tag(7, WireType.Varint).int32(message.driverCode1);
+        /* int32 target_driver_code = 8; */
+        if (message.targetDriverCode !== 0)
+            writer.tag(8, WireType.Varint).int32(message.targetDriverCode);
+        /* string start_datetime = 9; */
+        if (message.startDatetime !== "")
+            writer.tag(9, WireType.LengthDelimited).string(message.startDatetime);
+        /* string end_datetime = 10; */
+        if (message.endDatetime !== "")
+            writer.tag(10, WireType.LengthDelimited).string(message.endDatetime);
+        /* optional int32 event_code = 11; */
+        if (message.eventCode !== undefined)
+            writer.tag(11, WireType.Varint).int32(message.eventCode);
+        /* string event_name = 12; */
+        if (message.eventName !== "")
+            writer.tag(12, WireType.LengthDelimited).string(message.eventName);
+        /* double start_mileage = 13; */
+        if (message.startMileage !== 0)
+            writer.tag(13, WireType.Bit64).double(message.startMileage);
+        /* double end_mileage = 14; */
+        if (message.endMileage !== 0)
+            writer.tag(14, WireType.Bit64).double(message.endMileage);
+        /* int32 section_time = 15; */
+        if (message.sectionTime !== 0)
+            writer.tag(15, WireType.Varint).int32(message.sectionTime);
+        /* double section_distance = 16; */
+        if (message.sectionDistance !== 0)
+            writer.tag(16, WireType.Bit64).double(message.sectionDistance);
+        /* optional int32 start_city_code = 17; */
+        if (message.startCityCode !== undefined)
+            writer.tag(17, WireType.Varint).int32(message.startCityCode);
+        /* string start_city_name = 18; */
+        if (message.startCityName !== "")
+            writer.tag(18, WireType.LengthDelimited).string(message.startCityName);
+        /* optional int32 end_city_code = 19; */
+        if (message.endCityCode !== undefined)
+            writer.tag(19, WireType.Varint).int32(message.endCityCode);
+        /* string end_city_name = 20; */
+        if (message.endCityName !== "")
+            writer.tag(20, WireType.LengthDelimited).string(message.endCityName);
+        /* optional int32 start_place_code = 21; */
+        if (message.startPlaceCode !== undefined)
+            writer.tag(21, WireType.Varint).int32(message.startPlaceCode);
+        /* string start_place_name = 22; */
+        if (message.startPlaceName !== "")
+            writer.tag(22, WireType.LengthDelimited).string(message.startPlaceName);
+        /* optional int32 end_place_code = 23; */
+        if (message.endPlaceCode !== undefined)
+            writer.tag(23, WireType.Varint).int32(message.endPlaceCode);
+        /* string end_place_name = 24; */
+        if (message.endPlaceName !== "")
+            writer.tag(24, WireType.LengthDelimited).string(message.endPlaceName);
+        /* optional int32 start_gps_valid = 25; */
+        if (message.startGpsValid !== undefined)
+            writer.tag(25, WireType.Varint).int32(message.startGpsValid);
+        /* optional int64 start_gps_latitude = 26; */
+        if (message.startGpsLatitude !== undefined)
+            writer.tag(26, WireType.Varint).int64(message.startGpsLatitude);
+        /* optional int64 start_gps_longitude = 27; */
+        if (message.startGpsLongitude !== undefined)
+            writer.tag(27, WireType.Varint).int64(message.startGpsLongitude);
+        /* optional int32 end_gps_valid = 28; */
+        if (message.endGpsValid !== undefined)
+            writer.tag(28, WireType.Varint).int32(message.endGpsValid);
+        /* optional int64 end_gps_latitude = 29; */
+        if (message.endGpsLatitude !== undefined)
+            writer.tag(29, WireType.Varint).int64(message.endGpsLatitude);
+        /* optional int64 end_gps_longitude = 30; */
+        if (message.endGpsLongitude !== undefined)
+            writer.tag(30, WireType.Varint).int64(message.endGpsLongitude);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoEvents
+ */
+export const DTakoEvents = new DTakoEvents$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoRows$Type extends MessageType<DTakoRows> {
+    constructor() {
+        super("ryohi.DTakoRows", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "operation_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "read_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "operation_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "car_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 6, name: "car_cc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 7, name: "driver_code1", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "target_driver_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 9, name: "target_driver_code", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 10, name: "start_work_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "end_work_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 12, name: "departure_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 13, name: "return_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 14, name: "departure_meter", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 15, name: "return_meter", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 16, name: "total_distance", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 17, name: "loaded_distance", kind: "scalar", opt: true, T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 18, name: "destination_city_name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 19, name: "destination_place_name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 20, name: "general_road_drive_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 21, name: "highway_drive_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 22, name: "bypass_drive_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 23, name: "loaded_drive_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 24, name: "empty_drive_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 25, name: "work1_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 26, name: "work2_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 27, name: "work3_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 28, name: "work4_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 29, name: "status1_distance", kind: "scalar", T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 30, name: "status1_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoRows>): DTakoRows {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = "";
+        message.operationNo = "";
+        message.readDate = "";
+        message.operationDate = "";
+        message.carCode = 0;
+        message.carCc = "";
+        message.targetDriverType = 0;
+        message.targetDriverCode = 0;
+        message.startWorkDatetime = "";
+        message.endWorkDatetime = "";
+        message.departureDatetime = "";
+        message.returnDatetime = "";
+        message.departureMeter = 0;
+        message.returnMeter = 0;
+        message.totalDistance = 0;
+        message.generalRoadDriveTime = 0;
+        message.highwayDriveTime = 0;
+        message.bypassDriveTime = 0;
+        message.loadedDriveTime = 0;
+        message.emptyDriveTime = 0;
+        message.work1Time = 0;
+        message.work2Time = 0;
+        message.work3Time = 0;
+        message.work4Time = 0;
+        message.status1Distance = 0;
+        message.status1Time = 0;
+        if (value !== undefined)
+            reflectionMergePartial<DTakoRows>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoRows): DTakoRows {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                case /* string operation_no */ 2:
+                    message.operationNo = reader.string();
+                    break;
+                case /* string read_date */ 3:
+                    message.readDate = reader.string();
+                    break;
+                case /* string operation_date */ 4:
+                    message.operationDate = reader.string();
+                    break;
+                case /* int32 car_code */ 5:
+                    message.carCode = reader.int32();
+                    break;
+                case /* string car_cc */ 6:
+                    message.carCc = reader.string();
+                    break;
+                case /* optional int32 driver_code1 */ 7:
+                    message.driverCode1 = reader.int32();
+                    break;
+                case /* int32 target_driver_type */ 8:
+                    message.targetDriverType = reader.int32();
+                    break;
+                case /* int32 target_driver_code */ 9:
+                    message.targetDriverCode = reader.int32();
+                    break;
+                case /* string start_work_datetime */ 10:
+                    message.startWorkDatetime = reader.string();
+                    break;
+                case /* string end_work_datetime */ 11:
+                    message.endWorkDatetime = reader.string();
+                    break;
+                case /* string departure_datetime */ 12:
+                    message.departureDatetime = reader.string();
+                    break;
+                case /* string return_datetime */ 13:
+                    message.returnDatetime = reader.string();
+                    break;
+                case /* double departure_meter */ 14:
+                    message.departureMeter = reader.double();
+                    break;
+                case /* double return_meter */ 15:
+                    message.returnMeter = reader.double();
+                    break;
+                case /* double total_distance */ 16:
+                    message.totalDistance = reader.double();
+                    break;
+                case /* optional double loaded_distance */ 17:
+                    message.loadedDistance = reader.double();
+                    break;
+                case /* optional string destination_city_name */ 18:
+                    message.destinationCityName = reader.string();
+                    break;
+                case /* optional string destination_place_name */ 19:
+                    message.destinationPlaceName = reader.string();
+                    break;
+                case /* int32 general_road_drive_time */ 20:
+                    message.generalRoadDriveTime = reader.int32();
+                    break;
+                case /* int32 highway_drive_time */ 21:
+                    message.highwayDriveTime = reader.int32();
+                    break;
+                case /* int32 bypass_drive_time */ 22:
+                    message.bypassDriveTime = reader.int32();
+                    break;
+                case /* int32 loaded_drive_time */ 23:
+                    message.loadedDriveTime = reader.int32();
+                    break;
+                case /* int32 empty_drive_time */ 24:
+                    message.emptyDriveTime = reader.int32();
+                    break;
+                case /* int32 work1_time */ 25:
+                    message.work1Time = reader.int32();
+                    break;
+                case /* int32 work2_time */ 26:
+                    message.work2Time = reader.int32();
+                    break;
+                case /* int32 work3_time */ 27:
+                    message.work3Time = reader.int32();
+                    break;
+                case /* int32 work4_time */ 28:
+                    message.work4Time = reader.int32();
+                    break;
+                case /* double status1_distance */ 29:
+                    message.status1Distance = reader.double();
+                    break;
+                case /* int32 status1_time */ 30:
+                    message.status1Time = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoRows, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        /* string operation_no = 2; */
+        if (message.operationNo !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.operationNo);
+        /* string read_date = 3; */
+        if (message.readDate !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.readDate);
+        /* string operation_date = 4; */
+        if (message.operationDate !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.operationDate);
+        /* int32 car_code = 5; */
+        if (message.carCode !== 0)
+            writer.tag(5, WireType.Varint).int32(message.carCode);
+        /* string car_cc = 6; */
+        if (message.carCc !== "")
+            writer.tag(6, WireType.LengthDelimited).string(message.carCc);
+        /* optional int32 driver_code1 = 7; */
+        if (message.driverCode1 !== undefined)
+            writer.tag(7, WireType.Varint).int32(message.driverCode1);
+        /* int32 target_driver_type = 8; */
+        if (message.targetDriverType !== 0)
+            writer.tag(8, WireType.Varint).int32(message.targetDriverType);
+        /* int32 target_driver_code = 9; */
+        if (message.targetDriverCode !== 0)
+            writer.tag(9, WireType.Varint).int32(message.targetDriverCode);
+        /* string start_work_datetime = 10; */
+        if (message.startWorkDatetime !== "")
+            writer.tag(10, WireType.LengthDelimited).string(message.startWorkDatetime);
+        /* string end_work_datetime = 11; */
+        if (message.endWorkDatetime !== "")
+            writer.tag(11, WireType.LengthDelimited).string(message.endWorkDatetime);
+        /* string departure_datetime = 12; */
+        if (message.departureDatetime !== "")
+            writer.tag(12, WireType.LengthDelimited).string(message.departureDatetime);
+        /* string return_datetime = 13; */
+        if (message.returnDatetime !== "")
+            writer.tag(13, WireType.LengthDelimited).string(message.returnDatetime);
+        /* double departure_meter = 14; */
+        if (message.departureMeter !== 0)
+            writer.tag(14, WireType.Bit64).double(message.departureMeter);
+        /* double return_meter = 15; */
+        if (message.returnMeter !== 0)
+            writer.tag(15, WireType.Bit64).double(message.returnMeter);
+        /* double total_distance = 16; */
+        if (message.totalDistance !== 0)
+            writer.tag(16, WireType.Bit64).double(message.totalDistance);
+        /* optional double loaded_distance = 17; */
+        if (message.loadedDistance !== undefined)
+            writer.tag(17, WireType.Bit64).double(message.loadedDistance);
+        /* optional string destination_city_name = 18; */
+        if (message.destinationCityName !== undefined)
+            writer.tag(18, WireType.LengthDelimited).string(message.destinationCityName);
+        /* optional string destination_place_name = 19; */
+        if (message.destinationPlaceName !== undefined)
+            writer.tag(19, WireType.LengthDelimited).string(message.destinationPlaceName);
+        /* int32 general_road_drive_time = 20; */
+        if (message.generalRoadDriveTime !== 0)
+            writer.tag(20, WireType.Varint).int32(message.generalRoadDriveTime);
+        /* int32 highway_drive_time = 21; */
+        if (message.highwayDriveTime !== 0)
+            writer.tag(21, WireType.Varint).int32(message.highwayDriveTime);
+        /* int32 bypass_drive_time = 22; */
+        if (message.bypassDriveTime !== 0)
+            writer.tag(22, WireType.Varint).int32(message.bypassDriveTime);
+        /* int32 loaded_drive_time = 23; */
+        if (message.loadedDriveTime !== 0)
+            writer.tag(23, WireType.Varint).int32(message.loadedDriveTime);
+        /* int32 empty_drive_time = 24; */
+        if (message.emptyDriveTime !== 0)
+            writer.tag(24, WireType.Varint).int32(message.emptyDriveTime);
+        /* int32 work1_time = 25; */
+        if (message.work1Time !== 0)
+            writer.tag(25, WireType.Varint).int32(message.work1Time);
+        /* int32 work2_time = 26; */
+        if (message.work2Time !== 0)
+            writer.tag(26, WireType.Varint).int32(message.work2Time);
+        /* int32 work3_time = 27; */
+        if (message.work3Time !== 0)
+            writer.tag(27, WireType.Varint).int32(message.work3Time);
+        /* int32 work4_time = 28; */
+        if (message.work4Time !== 0)
+            writer.tag(28, WireType.Varint).int32(message.work4Time);
+        /* double status1_distance = 29; */
+        if (message.status1Distance !== 0)
+            writer.tag(29, WireType.Bit64).double(message.status1Distance);
+        /* int32 status1_time = 30; */
+        if (message.status1Time !== 0)
+            writer.tag(30, WireType.Varint).int32(message.status1Time);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoRows
+ */
+export const DTakoRows = new DTakoRows$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ETCNum$Type extends MessageType<ETCNum> {
+    constructor() {
+        super("ryohi.ETCNum", [
+            { no: 1, name: "etc_card_num", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "car_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "start_date_time", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "due_date_time", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "to_change", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ETCNum>): ETCNum {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.etcCardNum = "";
+        message.carId = "";
+        if (value !== undefined)
+            reflectionMergePartial<ETCNum>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ETCNum): ETCNum {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string etc_card_num */ 1:
+                    message.etcCardNum = reader.string();
+                    break;
+                case /* string car_id */ 2:
+                    message.carId = reader.string();
+                    break;
+                case /* optional string start_date_time */ 3:
+                    message.startDateTime = reader.string();
+                    break;
+                case /* optional string due_date_time */ 4:
+                    message.dueDateTime = reader.string();
+                    break;
+                case /* optional bool to_change */ 5:
+                    message.toChange = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ETCNum, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string etc_card_num = 1; */
+        if (message.etcCardNum !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.etcCardNum);
+        /* string car_id = 2; */
+        if (message.carId !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.carId);
+        /* optional string start_date_time = 3; */
+        if (message.startDateTime !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.startDateTime);
+        /* optional string due_date_time = 4; */
+        if (message.dueDateTime !== undefined)
+            writer.tag(4, WireType.LengthDelimited).string(message.dueDateTime);
+        /* optional bool to_change = 5; */
+        if (message.toChange !== undefined)
+            writer.tag(5, WireType.Varint).bool(message.toChange);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ETCNum
+ */
+export const ETCNum = new ETCNum$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoCarsRequest$Type extends MessageType<GetDTakoCarsRequest> {
+    constructor() {
+        super("ryohi.GetDTakoCarsRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoCarsRequest>): GetDTakoCarsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoCarsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoCarsRequest): GetDTakoCarsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoCarsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoCarsRequest
+ */
+export const GetDTakoCarsRequest = new GetDTakoCarsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoCarsByCarCodeRequest$Type extends MessageType<GetDTakoCarsByCarCodeRequest> {
+    constructor() {
+        super("ryohi.GetDTakoCarsByCarCodeRequest", [
+            { no: 1, name: "car_code", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoCarsByCarCodeRequest>): GetDTakoCarsByCarCodeRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.carCode = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoCarsByCarCodeRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoCarsByCarCodeRequest): GetDTakoCarsByCarCodeRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string car_code */ 1:
+                    message.carCode = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoCarsByCarCodeRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string car_code = 1; */
+        if (message.carCode !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.carCode);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoCarsByCarCodeRequest
+ */
+export const GetDTakoCarsByCarCodeRequest = new GetDTakoCarsByCarCodeRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoCarsRequest$Type extends MessageType<ListDTakoCarsRequest> {
+    constructor() {
+        super("ryohi.ListDTakoCarsRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoCarsRequest>): ListDTakoCarsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoCarsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoCarsRequest): ListDTakoCarsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoCarsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoCarsRequest
+ */
+export const ListDTakoCarsRequest = new ListDTakoCarsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoCarsResponse$Type extends MessageType<DTakoCarsResponse> {
+    constructor() {
+        super("ryohi.DTakoCarsResponse", [
+            { no: 1, name: "dtako_cars", kind: "message", T: () => DTakoCars }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoCarsResponse>): DTakoCarsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<DTakoCarsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoCarsResponse): DTakoCarsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.DTakoCars dtako_cars */ 1:
+                    message.dtakoCars = DTakoCars.internalBinaryRead(reader, reader.uint32(), options, message.dtakoCars);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoCarsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.DTakoCars dtako_cars = 1; */
+        if (message.dtakoCars)
+            DTakoCars.internalBinaryWrite(message.dtakoCars, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoCarsResponse
+ */
+export const DTakoCarsResponse = new DTakoCarsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoCarsResponse$Type extends MessageType<ListDTakoCarsResponse> {
+    constructor() {
+        super("ryohi.ListDTakoCarsResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => DTakoCars },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoCarsResponse>): ListDTakoCarsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoCarsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoCarsResponse): ListDTakoCarsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.DTakoCars items */ 1:
+                    message.items.push(DTakoCars.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoCarsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.DTakoCars items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            DTakoCars.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoCarsResponse
+ */
+export const ListDTakoCarsResponse = new ListDTakoCarsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoEventsRequest$Type extends MessageType<GetDTakoEventsRequest> {
+    constructor() {
+        super("ryohi.GetDTakoEventsRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoEventsRequest>): GetDTakoEventsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0n;
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoEventsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoEventsRequest): GetDTakoEventsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int64 id */ 1:
+                    message.id = reader.int64().toBigInt();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoEventsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int64 id = 1; */
+        if (message.id !== 0n)
+            writer.tag(1, WireType.Varint).int64(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoEventsRequest
+ */
+export const GetDTakoEventsRequest = new GetDTakoEventsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoEventsByOperationNoRequest$Type extends MessageType<GetDTakoEventsByOperationNoRequest> {
+    constructor() {
+        super("ryohi.GetDTakoEventsByOperationNoRequest", [
+            { no: 1, name: "operation_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoEventsByOperationNoRequest>): GetDTakoEventsByOperationNoRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.operationNo = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoEventsByOperationNoRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoEventsByOperationNoRequest): GetDTakoEventsByOperationNoRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string operation_no */ 1:
+                    message.operationNo = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoEventsByOperationNoRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string operation_no = 1; */
+        if (message.operationNo !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.operationNo);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoEventsByOperationNoRequest
+ */
+export const GetDTakoEventsByOperationNoRequest = new GetDTakoEventsByOperationNoRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoEventsRequest$Type extends MessageType<ListDTakoEventsRequest> {
+    constructor() {
+        super("ryohi.ListDTakoEventsRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "order_by", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoEventsRequest>): ListDTakoEventsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoEventsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoEventsRequest): ListDTakoEventsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                case /* optional string order_by */ 3:
+                    message.orderBy = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoEventsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        /* optional string order_by = 3; */
+        if (message.orderBy !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.orderBy);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoEventsRequest
+ */
+export const ListDTakoEventsRequest = new ListDTakoEventsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoEventsResponse$Type extends MessageType<DTakoEventsResponse> {
+    constructor() {
+        super("ryohi.DTakoEventsResponse", [
+            { no: 1, name: "dtako_events", kind: "message", T: () => DTakoEvents }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoEventsResponse>): DTakoEventsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<DTakoEventsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoEventsResponse): DTakoEventsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.DTakoEvents dtako_events */ 1:
+                    message.dtakoEvents = DTakoEvents.internalBinaryRead(reader, reader.uint32(), options, message.dtakoEvents);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoEventsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.DTakoEvents dtako_events = 1; */
+        if (message.dtakoEvents)
+            DTakoEvents.internalBinaryWrite(message.dtakoEvents, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoEventsResponse
+ */
+export const DTakoEventsResponse = new DTakoEventsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoEventsResponse$Type extends MessageType<ListDTakoEventsResponse> {
+    constructor() {
+        super("ryohi.ListDTakoEventsResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => DTakoEvents },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoEventsResponse>): ListDTakoEventsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoEventsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoEventsResponse): ListDTakoEventsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.DTakoEvents items */ 1:
+                    message.items.push(DTakoEvents.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoEventsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.DTakoEvents items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            DTakoEvents.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoEventsResponse
+ */
+export const ListDTakoEventsResponse = new ListDTakoEventsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoRowsRequest$Type extends MessageType<GetDTakoRowsRequest> {
+    constructor() {
+        super("ryohi.GetDTakoRowsRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoRowsRequest>): GetDTakoRowsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoRowsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoRowsRequest): GetDTakoRowsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoRowsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoRowsRequest
+ */
+export const GetDTakoRowsRequest = new GetDTakoRowsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoRowsByOperationNoRequest$Type extends MessageType<GetDTakoRowsByOperationNoRequest> {
+    constructor() {
+        super("ryohi.GetDTakoRowsByOperationNoRequest", [
+            { no: 1, name: "operation_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoRowsByOperationNoRequest>): GetDTakoRowsByOperationNoRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.operationNo = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoRowsByOperationNoRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoRowsByOperationNoRequest): GetDTakoRowsByOperationNoRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string operation_no */ 1:
+                    message.operationNo = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoRowsByOperationNoRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string operation_no = 1; */
+        if (message.operationNo !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.operationNo);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoRowsByOperationNoRequest
+ */
+export const GetDTakoRowsByOperationNoRequest = new GetDTakoRowsByOperationNoRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoRowsRequest$Type extends MessageType<ListDTakoRowsRequest> {
+    constructor() {
+        super("ryohi.ListDTakoRowsRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "order_by", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoRowsRequest>): ListDTakoRowsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoRowsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoRowsRequest): ListDTakoRowsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                case /* optional string order_by */ 3:
+                    message.orderBy = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoRowsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        /* optional string order_by = 3; */
+        if (message.orderBy !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.orderBy);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoRowsRequest
+ */
+export const ListDTakoRowsRequest = new ListDTakoRowsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoRowsResponse$Type extends MessageType<DTakoRowsResponse> {
+    constructor() {
+        super("ryohi.DTakoRowsResponse", [
+            { no: 1, name: "dtako_rows", kind: "message", T: () => DTakoRows }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoRowsResponse>): DTakoRowsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<DTakoRowsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoRowsResponse): DTakoRowsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.DTakoRows dtako_rows */ 1:
+                    message.dtakoRows = DTakoRows.internalBinaryRead(reader, reader.uint32(), options, message.dtakoRows);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoRowsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.DTakoRows dtako_rows = 1; */
+        if (message.dtakoRows)
+            DTakoRows.internalBinaryWrite(message.dtakoRows, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoRowsResponse
+ */
+export const DTakoRowsResponse = new DTakoRowsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoRowsResponse$Type extends MessageType<ListDTakoRowsResponse> {
+    constructor() {
+        super("ryohi.ListDTakoRowsResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => DTakoRows },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoRowsResponse>): ListDTakoRowsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoRowsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoRowsResponse): ListDTakoRowsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.DTakoRows items */ 1:
+                    message.items.push(DTakoRows.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoRowsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.DTakoRows items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            DTakoRows.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoRowsResponse
+ */
+export const ListDTakoRowsResponse = new ListDTakoRowsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetETCNumByETCCardNumRequest$Type extends MessageType<GetETCNumByETCCardNumRequest> {
+    constructor() {
+        super("ryohi.GetETCNumByETCCardNumRequest", [
+            { no: 1, name: "etc_card_num", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetETCNumByETCCardNumRequest>): GetETCNumByETCCardNumRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.etcCardNum = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetETCNumByETCCardNumRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetETCNumByETCCardNumRequest): GetETCNumByETCCardNumRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string etc_card_num */ 1:
+                    message.etcCardNum = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetETCNumByETCCardNumRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string etc_card_num = 1; */
+        if (message.etcCardNum !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.etcCardNum);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetETCNumByETCCardNumRequest
+ */
+export const GetETCNumByETCCardNumRequest = new GetETCNumByETCCardNumRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetETCNumByCarIDRequest$Type extends MessageType<GetETCNumByCarIDRequest> {
+    constructor() {
+        super("ryohi.GetETCNumByCarIDRequest", [
+            { no: 1, name: "car_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetETCNumByCarIDRequest>): GetETCNumByCarIDRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.carId = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetETCNumByCarIDRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetETCNumByCarIDRequest): GetETCNumByCarIDRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string car_id */ 1:
+                    message.carId = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetETCNumByCarIDRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string car_id = 1; */
+        if (message.carId !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.carId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetETCNumByCarIDRequest
+ */
+export const GetETCNumByCarIDRequest = new GetETCNumByCarIDRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListETCNumRequest$Type extends MessageType<ListETCNumRequest> {
+    constructor() {
+        super("ryohi.ListETCNumRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListETCNumRequest>): ListETCNumRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListETCNumRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListETCNumRequest): ListETCNumRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListETCNumRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListETCNumRequest
+ */
+export const ListETCNumRequest = new ListETCNumRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListETCNumResponse$Type extends MessageType<ListETCNumResponse> {
+    constructor() {
+        super("ryohi.ListETCNumResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => ETCNum },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListETCNumResponse>): ListETCNumResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListETCNumResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListETCNumResponse): ListETCNumResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.ETCNum items */ 1:
+                    message.items.push(ETCNum.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListETCNumResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.ETCNum items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            ETCNum.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListETCNumResponse
+ */
+export const ListETCNumResponse = new ListETCNumResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoFerryRowsProd$Type extends MessageType<DTakoFerryRowsProd> {
+    constructor() {
+        super("ryohi.DTakoFerryRowsProd", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "unko_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "unko_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "yomitori_date", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "jigyosho_cd", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 6, name: "jigyosho_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 7, name: "sharyo_cd", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "sharyo_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 9, name: "jomuin_cd1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 10, name: "jomuin_name1", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "taisho_jomuin_kbn", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 12, name: "kaishi_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 13, name: "shuryo_datetime", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 14, name: "ferry_company_cd", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 15, name: "ferry_company_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 16, name: "noriba_cd", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 17, name: "noriba_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 18, name: "bin", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 19, name: "oriba_cd", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 20, name: "oriba_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 21, name: "seisan_kbn", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 22, name: "seisan_kbn_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 23, name: "hyojun_ryokin", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 24, name: "keiyaku_ryokin", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 25, name: "koso_shashu_kbn", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 26, name: "koso_shashu_kbn_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 27, name: "minashi_kyori", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 28, name: "ferry_srch", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoFerryRowsProd>): DTakoFerryRowsProd {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        message.unkoNo = "";
+        message.unkoDate = "";
+        message.yomitoriDate = "";
+        message.jigyoshoCd = 0;
+        message.jigyoshoName = "";
+        message.sharyoCd = 0;
+        message.sharyoName = "";
+        message.jomuinCd1 = 0;
+        message.jomuinName1 = "";
+        message.taishoJomuinKbn = 0;
+        message.kaishiDatetime = "";
+        message.shuryoDatetime = "";
+        message.ferryCompanyCd = 0;
+        message.ferryCompanyName = "";
+        message.noribaCd = 0;
+        message.noribaName = "";
+        message.bin = "";
+        message.oribaCd = 0;
+        message.oribaName = "";
+        message.seisanKbn = 0;
+        message.seisanKbnName = "";
+        message.hyojunRyokin = 0;
+        message.keiyakuRyokin = 0;
+        message.kosoShashuKbn = 0;
+        message.kosoShashuKbnName = "";
+        message.minashiKyori = 0;
+        if (value !== undefined)
+            reflectionMergePartial<DTakoFerryRowsProd>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoFerryRowsProd): DTakoFerryRowsProd {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                case /* string unko_no */ 2:
+                    message.unkoNo = reader.string();
+                    break;
+                case /* string unko_date */ 3:
+                    message.unkoDate = reader.string();
+                    break;
+                case /* string yomitori_date */ 4:
+                    message.yomitoriDate = reader.string();
+                    break;
+                case /* int32 jigyosho_cd */ 5:
+                    message.jigyoshoCd = reader.int32();
+                    break;
+                case /* string jigyosho_name */ 6:
+                    message.jigyoshoName = reader.string();
+                    break;
+                case /* int32 sharyo_cd */ 7:
+                    message.sharyoCd = reader.int32();
+                    break;
+                case /* string sharyo_name */ 8:
+                    message.sharyoName = reader.string();
+                    break;
+                case /* int32 jomuin_cd1 */ 9:
+                    message.jomuinCd1 = reader.int32();
+                    break;
+                case /* string jomuin_name1 */ 10:
+                    message.jomuinName1 = reader.string();
+                    break;
+                case /* int32 taisho_jomuin_kbn */ 11:
+                    message.taishoJomuinKbn = reader.int32();
+                    break;
+                case /* string kaishi_datetime */ 12:
+                    message.kaishiDatetime = reader.string();
+                    break;
+                case /* string shuryo_datetime */ 13:
+                    message.shuryoDatetime = reader.string();
+                    break;
+                case /* int32 ferry_company_cd */ 14:
+                    message.ferryCompanyCd = reader.int32();
+                    break;
+                case /* string ferry_company_name */ 15:
+                    message.ferryCompanyName = reader.string();
+                    break;
+                case /* int32 noriba_cd */ 16:
+                    message.noribaCd = reader.int32();
+                    break;
+                case /* string noriba_name */ 17:
+                    message.noribaName = reader.string();
+                    break;
+                case /* string bin */ 18:
+                    message.bin = reader.string();
+                    break;
+                case /* int32 oriba_cd */ 19:
+                    message.oribaCd = reader.int32();
+                    break;
+                case /* string oriba_name */ 20:
+                    message.oribaName = reader.string();
+                    break;
+                case /* int32 seisan_kbn */ 21:
+                    message.seisanKbn = reader.int32();
+                    break;
+                case /* string seisan_kbn_name */ 22:
+                    message.seisanKbnName = reader.string();
+                    break;
+                case /* int32 hyojun_ryokin */ 23:
+                    message.hyojunRyokin = reader.int32();
+                    break;
+                case /* int32 keiyaku_ryokin */ 24:
+                    message.keiyakuRyokin = reader.int32();
+                    break;
+                case /* int32 koso_shashu_kbn */ 25:
+                    message.kosoShashuKbn = reader.int32();
+                    break;
+                case /* string koso_shashu_kbn_name */ 26:
+                    message.kosoShashuKbnName = reader.string();
+                    break;
+                case /* int32 minashi_kyori */ 27:
+                    message.minashiKyori = reader.int32();
+                    break;
+                case /* optional string ferry_srch */ 28:
+                    message.ferrySrch = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoFerryRowsProd, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        /* string unko_no = 2; */
+        if (message.unkoNo !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.unkoNo);
+        /* string unko_date = 3; */
+        if (message.unkoDate !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.unkoDate);
+        /* string yomitori_date = 4; */
+        if (message.yomitoriDate !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.yomitoriDate);
+        /* int32 jigyosho_cd = 5; */
+        if (message.jigyoshoCd !== 0)
+            writer.tag(5, WireType.Varint).int32(message.jigyoshoCd);
+        /* string jigyosho_name = 6; */
+        if (message.jigyoshoName !== "")
+            writer.tag(6, WireType.LengthDelimited).string(message.jigyoshoName);
+        /* int32 sharyo_cd = 7; */
+        if (message.sharyoCd !== 0)
+            writer.tag(7, WireType.Varint).int32(message.sharyoCd);
+        /* string sharyo_name = 8; */
+        if (message.sharyoName !== "")
+            writer.tag(8, WireType.LengthDelimited).string(message.sharyoName);
+        /* int32 jomuin_cd1 = 9; */
+        if (message.jomuinCd1 !== 0)
+            writer.tag(9, WireType.Varint).int32(message.jomuinCd1);
+        /* string jomuin_name1 = 10; */
+        if (message.jomuinName1 !== "")
+            writer.tag(10, WireType.LengthDelimited).string(message.jomuinName1);
+        /* int32 taisho_jomuin_kbn = 11; */
+        if (message.taishoJomuinKbn !== 0)
+            writer.tag(11, WireType.Varint).int32(message.taishoJomuinKbn);
+        /* string kaishi_datetime = 12; */
+        if (message.kaishiDatetime !== "")
+            writer.tag(12, WireType.LengthDelimited).string(message.kaishiDatetime);
+        /* string shuryo_datetime = 13; */
+        if (message.shuryoDatetime !== "")
+            writer.tag(13, WireType.LengthDelimited).string(message.shuryoDatetime);
+        /* int32 ferry_company_cd = 14; */
+        if (message.ferryCompanyCd !== 0)
+            writer.tag(14, WireType.Varint).int32(message.ferryCompanyCd);
+        /* string ferry_company_name = 15; */
+        if (message.ferryCompanyName !== "")
+            writer.tag(15, WireType.LengthDelimited).string(message.ferryCompanyName);
+        /* int32 noriba_cd = 16; */
+        if (message.noribaCd !== 0)
+            writer.tag(16, WireType.Varint).int32(message.noribaCd);
+        /* string noriba_name = 17; */
+        if (message.noribaName !== "")
+            writer.tag(17, WireType.LengthDelimited).string(message.noribaName);
+        /* string bin = 18; */
+        if (message.bin !== "")
+            writer.tag(18, WireType.LengthDelimited).string(message.bin);
+        /* int32 oriba_cd = 19; */
+        if (message.oribaCd !== 0)
+            writer.tag(19, WireType.Varint).int32(message.oribaCd);
+        /* string oriba_name = 20; */
+        if (message.oribaName !== "")
+            writer.tag(20, WireType.LengthDelimited).string(message.oribaName);
+        /* int32 seisan_kbn = 21; */
+        if (message.seisanKbn !== 0)
+            writer.tag(21, WireType.Varint).int32(message.seisanKbn);
+        /* string seisan_kbn_name = 22; */
+        if (message.seisanKbnName !== "")
+            writer.tag(22, WireType.LengthDelimited).string(message.seisanKbnName);
+        /* int32 hyojun_ryokin = 23; */
+        if (message.hyojunRyokin !== 0)
+            writer.tag(23, WireType.Varint).int32(message.hyojunRyokin);
+        /* int32 keiyaku_ryokin = 24; */
+        if (message.keiyakuRyokin !== 0)
+            writer.tag(24, WireType.Varint).int32(message.keiyakuRyokin);
+        /* int32 koso_shashu_kbn = 25; */
+        if (message.kosoShashuKbn !== 0)
+            writer.tag(25, WireType.Varint).int32(message.kosoShashuKbn);
+        /* string koso_shashu_kbn_name = 26; */
+        if (message.kosoShashuKbnName !== "")
+            writer.tag(26, WireType.LengthDelimited).string(message.kosoShashuKbnName);
+        /* int32 minashi_kyori = 27; */
+        if (message.minashiKyori !== 0)
+            writer.tag(27, WireType.Varint).int32(message.minashiKyori);
+        /* optional string ferry_srch = 28; */
+        if (message.ferrySrch !== undefined)
+            writer.tag(28, WireType.LengthDelimited).string(message.ferrySrch);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoFerryRowsProd
+ */
+export const DTakoFerryRowsProd = new DTakoFerryRowsProd$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoFerryRowsProdRequest$Type extends MessageType<GetDTakoFerryRowsProdRequest> {
+    constructor() {
+        super("ryohi.GetDTakoFerryRowsProdRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoFerryRowsProdRequest>): GetDTakoFerryRowsProdRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoFerryRowsProdRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoFerryRowsProdRequest): GetDTakoFerryRowsProdRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoFerryRowsProdRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoFerryRowsProdRequest
+ */
+export const GetDTakoFerryRowsProdRequest = new GetDTakoFerryRowsProdRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDTakoFerryRowsProdByUnkoNoRequest$Type extends MessageType<GetDTakoFerryRowsProdByUnkoNoRequest> {
+    constructor() {
+        super("ryohi.GetDTakoFerryRowsProdByUnkoNoRequest", [
+            { no: 1, name: "unko_no", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDTakoFerryRowsProdByUnkoNoRequest>): GetDTakoFerryRowsProdByUnkoNoRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.unkoNo = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDTakoFerryRowsProdByUnkoNoRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDTakoFerryRowsProdByUnkoNoRequest): GetDTakoFerryRowsProdByUnkoNoRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string unko_no */ 1:
+                    message.unkoNo = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDTakoFerryRowsProdByUnkoNoRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string unko_no = 1; */
+        if (message.unkoNo !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.unkoNo);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDTakoFerryRowsProdByUnkoNoRequest
+ */
+export const GetDTakoFerryRowsProdByUnkoNoRequest = new GetDTakoFerryRowsProdByUnkoNoRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoFerryRowsProdRequest$Type extends MessageType<ListDTakoFerryRowsProdRequest> {
+    constructor() {
+        super("ryohi.ListDTakoFerryRowsProdRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoFerryRowsProdRequest>): ListDTakoFerryRowsProdRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoFerryRowsProdRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoFerryRowsProdRequest): ListDTakoFerryRowsProdRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoFerryRowsProdRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoFerryRowsProdRequest
+ */
+export const ListDTakoFerryRowsProdRequest = new ListDTakoFerryRowsProdRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DTakoFerryRowsProdResponse$Type extends MessageType<DTakoFerryRowsProdResponse> {
+    constructor() {
+        super("ryohi.DTakoFerryRowsProdResponse", [
+            { no: 1, name: "dtako_ferry_rows", kind: "message", T: () => DTakoFerryRowsProd }
+        ]);
+    }
+    create(value?: PartialMessage<DTakoFerryRowsProdResponse>): DTakoFerryRowsProdResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<DTakoFerryRowsProdResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DTakoFerryRowsProdResponse): DTakoFerryRowsProdResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.DTakoFerryRowsProd dtako_ferry_rows */ 1:
+                    message.dtakoFerryRows = DTakoFerryRowsProd.internalBinaryRead(reader, reader.uint32(), options, message.dtakoFerryRows);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DTakoFerryRowsProdResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.DTakoFerryRowsProd dtako_ferry_rows = 1; */
+        if (message.dtakoFerryRows)
+            DTakoFerryRowsProd.internalBinaryWrite(message.dtakoFerryRows, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DTakoFerryRowsProdResponse
+ */
+export const DTakoFerryRowsProdResponse = new DTakoFerryRowsProdResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDTakoFerryRowsProdResponse$Type extends MessageType<ListDTakoFerryRowsProdResponse> {
+    constructor() {
+        super("ryohi.ListDTakoFerryRowsProdResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => DTakoFerryRowsProd },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDTakoFerryRowsProdResponse>): ListDTakoFerryRowsProdResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDTakoFerryRowsProdResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDTakoFerryRowsProdResponse): ListDTakoFerryRowsProdResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.DTakoFerryRowsProd items */ 1:
+                    message.items.push(DTakoFerryRowsProd.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDTakoFerryRowsProdResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.DTakoFerryRowsProd items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            DTakoFerryRowsProd.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDTakoFerryRowsProdResponse
+ */
+export const ListDTakoFerryRowsProdResponse = new ListDTakoFerryRowsProdResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Cars$Type extends MessageType<Cars> {
+    constructor() {
+        super("ryohi.Cars", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "id4", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "name_r", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "shashu", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "sekisai", kind: "scalar", opt: true, T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 7, name: "youseki", kind: "scalar", opt: true, T: 1 /*ScalarType.DOUBLE*/ },
+            { no: 8, name: "reg_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 9, name: "next_inspect_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 10, name: "parch_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "scrap_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 12, name: "bumon_code_id", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 13, name: "driver_id", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 14, name: "etc", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 15, name: "dai1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 16, name: "chu1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 17, name: "sho1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 18, name: "dai2", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 19, name: "chu2", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 20, name: "sho2", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 21, name: "daichusho1", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 22, name: "daichusho2", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<Cars>): Cars {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = "";
+        message.id4 = 0;
+        message.dai1 = 0;
+        message.chu1 = 0;
+        message.sho1 = 0;
+        message.dai2 = 0;
+        message.chu2 = 0;
+        message.sho2 = 0;
+        if (value !== undefined)
+            reflectionMergePartial<Cars>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: Cars): Cars {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                case /* int32 id4 */ 2:
+                    message.id4 = reader.int32();
+                    break;
+                case /* optional string name */ 3:
+                    message.name = reader.string();
+                    break;
+                case /* optional string name_r */ 4:
+                    message.nameR = reader.string();
+                    break;
+                case /* optional string shashu */ 5:
+                    message.shashu = reader.string();
+                    break;
+                case /* optional double sekisai */ 6:
+                    message.sekisai = reader.double();
+                    break;
+                case /* optional double youseki */ 7:
+                    message.youseki = reader.double();
+                    break;
+                case /* optional string reg_date */ 8:
+                    message.regDate = reader.string();
+                    break;
+                case /* optional string next_inspect_date */ 9:
+                    message.nextInspectDate = reader.string();
+                    break;
+                case /* optional string parch_date */ 10:
+                    message.parchDate = reader.string();
+                    break;
+                case /* optional string scrap_date */ 11:
+                    message.scrapDate = reader.string();
+                    break;
+                case /* optional string bumon_code_id */ 12:
+                    message.bumonCodeId = reader.string();
+                    break;
+                case /* optional int32 driver_id */ 13:
+                    message.driverId = reader.int32();
+                    break;
+                case /* optional int32 etc */ 14:
+                    message.etc = reader.int32();
+                    break;
+                case /* int32 dai1 */ 15:
+                    message.dai1 = reader.int32();
+                    break;
+                case /* int32 chu1 */ 16:
+                    message.chu1 = reader.int32();
+                    break;
+                case /* int32 sho1 */ 17:
+                    message.sho1 = reader.int32();
+                    break;
+                case /* int32 dai2 */ 18:
+                    message.dai2 = reader.int32();
+                    break;
+                case /* int32 chu2 */ 19:
+                    message.chu2 = reader.int32();
+                    break;
+                case /* int32 sho2 */ 20:
+                    message.sho2 = reader.int32();
+                    break;
+                case /* optional string daichusho1 */ 21:
+                    message.daichusho1 = reader.string();
+                    break;
+                case /* optional string daichusho2 */ 22:
+                    message.daichusho2 = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: Cars, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        /* int32 id4 = 2; */
+        if (message.id4 !== 0)
+            writer.tag(2, WireType.Varint).int32(message.id4);
+        /* optional string name = 3; */
+        if (message.name !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.name);
+        /* optional string name_r = 4; */
+        if (message.nameR !== undefined)
+            writer.tag(4, WireType.LengthDelimited).string(message.nameR);
+        /* optional string shashu = 5; */
+        if (message.shashu !== undefined)
+            writer.tag(5, WireType.LengthDelimited).string(message.shashu);
+        /* optional double sekisai = 6; */
+        if (message.sekisai !== undefined)
+            writer.tag(6, WireType.Bit64).double(message.sekisai);
+        /* optional double youseki = 7; */
+        if (message.youseki !== undefined)
+            writer.tag(7, WireType.Bit64).double(message.youseki);
+        /* optional string reg_date = 8; */
+        if (message.regDate !== undefined)
+            writer.tag(8, WireType.LengthDelimited).string(message.regDate);
+        /* optional string next_inspect_date = 9; */
+        if (message.nextInspectDate !== undefined)
+            writer.tag(9, WireType.LengthDelimited).string(message.nextInspectDate);
+        /* optional string parch_date = 10; */
+        if (message.parchDate !== undefined)
+            writer.tag(10, WireType.LengthDelimited).string(message.parchDate);
+        /* optional string scrap_date = 11; */
+        if (message.scrapDate !== undefined)
+            writer.tag(11, WireType.LengthDelimited).string(message.scrapDate);
+        /* optional string bumon_code_id = 12; */
+        if (message.bumonCodeId !== undefined)
+            writer.tag(12, WireType.LengthDelimited).string(message.bumonCodeId);
+        /* optional int32 driver_id = 13; */
+        if (message.driverId !== undefined)
+            writer.tag(13, WireType.Varint).int32(message.driverId);
+        /* optional int32 etc = 14; */
+        if (message.etc !== undefined)
+            writer.tag(14, WireType.Varint).int32(message.etc);
+        /* int32 dai1 = 15; */
+        if (message.dai1 !== 0)
+            writer.tag(15, WireType.Varint).int32(message.dai1);
+        /* int32 chu1 = 16; */
+        if (message.chu1 !== 0)
+            writer.tag(16, WireType.Varint).int32(message.chu1);
+        /* int32 sho1 = 17; */
+        if (message.sho1 !== 0)
+            writer.tag(17, WireType.Varint).int32(message.sho1);
+        /* int32 dai2 = 18; */
+        if (message.dai2 !== 0)
+            writer.tag(18, WireType.Varint).int32(message.dai2);
+        /* int32 chu2 = 19; */
+        if (message.chu2 !== 0)
+            writer.tag(19, WireType.Varint).int32(message.chu2);
+        /* int32 sho2 = 20; */
+        if (message.sho2 !== 0)
+            writer.tag(20, WireType.Varint).int32(message.sho2);
+        /* optional string daichusho1 = 21; */
+        if (message.daichusho1 !== undefined)
+            writer.tag(21, WireType.LengthDelimited).string(message.daichusho1);
+        /* optional string daichusho2 = 22; */
+        if (message.daichusho2 !== undefined)
+            writer.tag(22, WireType.LengthDelimited).string(message.daichusho2);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.Cars
+ */
+export const Cars = new Cars$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Drivers$Type extends MessageType<Drivers> {
+    constructor() {
+        super("ryohi.Drivers", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "shain_r", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "bumon", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "join_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "retire_date", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 7, name: "bunrui1", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "bunrui2", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 9, name: "kubun", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 10, name: "kinmu_taikei", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<Drivers>): Drivers {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        message.bumon = "";
+        message.kinmuTaikei = 0;
+        if (value !== undefined)
+            reflectionMergePartial<Drivers>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: Drivers): Drivers {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                case /* optional string name */ 2:
+                    message.name = reader.string();
+                    break;
+                case /* optional string shain_r */ 3:
+                    message.shainR = reader.string();
+                    break;
+                case /* string bumon */ 4:
+                    message.bumon = reader.string();
+                    break;
+                case /* optional string join_date */ 5:
+                    message.joinDate = reader.string();
+                    break;
+                case /* optional string retire_date */ 6:
+                    message.retireDate = reader.string();
+                    break;
+                case /* optional string bunrui1 */ 7:
+                    message.bunrui1 = reader.string();
+                    break;
+                case /* optional string bunrui2 */ 8:
+                    message.bunrui2 = reader.string();
+                    break;
+                case /* optional int32 kubun */ 9:
+                    message.kubun = reader.int32();
+                    break;
+                case /* int32 kinmu_taikei */ 10:
+                    message.kinmuTaikei = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: Drivers, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        /* optional string name = 2; */
+        if (message.name !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.name);
+        /* optional string shain_r = 3; */
+        if (message.shainR !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.shainR);
+        /* string bumon = 4; */
+        if (message.bumon !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.bumon);
+        /* optional string join_date = 5; */
+        if (message.joinDate !== undefined)
+            writer.tag(5, WireType.LengthDelimited).string(message.joinDate);
+        /* optional string retire_date = 6; */
+        if (message.retireDate !== undefined)
+            writer.tag(6, WireType.LengthDelimited).string(message.retireDate);
+        /* optional string bunrui1 = 7; */
+        if (message.bunrui1 !== undefined)
+            writer.tag(7, WireType.LengthDelimited).string(message.bunrui1);
+        /* optional string bunrui2 = 8; */
+        if (message.bunrui2 !== undefined)
+            writer.tag(8, WireType.LengthDelimited).string(message.bunrui2);
+        /* optional int32 kubun = 9; */
+        if (message.kubun !== undefined)
+            writer.tag(9, WireType.Varint).int32(message.kubun);
+        /* int32 kinmu_taikei = 10; */
+        if (message.kinmuTaikei !== 0)
+            writer.tag(10, WireType.Varint).int32(message.kinmuTaikei);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.Drivers
+ */
+export const Drivers = new Drivers$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetCarsRequest$Type extends MessageType<GetCarsRequest> {
+    constructor() {
+        super("ryohi.GetCarsRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetCarsRequest>): GetCarsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetCarsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetCarsRequest): GetCarsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetCarsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetCarsRequest
+ */
+export const GetCarsRequest = new GetCarsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetCarsByBumonCodeIDRequest$Type extends MessageType<GetCarsByBumonCodeIDRequest> {
+    constructor() {
+        super("ryohi.GetCarsByBumonCodeIDRequest", [
+            { no: 1, name: "bumon_code_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetCarsByBumonCodeIDRequest>): GetCarsByBumonCodeIDRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.bumonCodeId = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetCarsByBumonCodeIDRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetCarsByBumonCodeIDRequest): GetCarsByBumonCodeIDRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string bumon_code_id */ 1:
+                    message.bumonCodeId = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetCarsByBumonCodeIDRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string bumon_code_id = 1; */
+        if (message.bumonCodeId !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.bumonCodeId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetCarsByBumonCodeIDRequest
+ */
+export const GetCarsByBumonCodeIDRequest = new GetCarsByBumonCodeIDRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListCarsRequest$Type extends MessageType<ListCarsRequest> {
+    constructor() {
+        super("ryohi.ListCarsRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "order_by", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListCarsRequest>): ListCarsRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListCarsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListCarsRequest): ListCarsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                case /* optional string order_by */ 3:
+                    message.orderBy = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListCarsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        /* optional string order_by = 3; */
+        if (message.orderBy !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.orderBy);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListCarsRequest
+ */
+export const ListCarsRequest = new ListCarsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class CarsResponse$Type extends MessageType<CarsResponse> {
+    constructor() {
+        super("ryohi.CarsResponse", [
+            { no: 1, name: "cars", kind: "message", T: () => Cars }
+        ]);
+    }
+    create(value?: PartialMessage<CarsResponse>): CarsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<CarsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CarsResponse): CarsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.Cars cars */ 1:
+                    message.cars = Cars.internalBinaryRead(reader, reader.uint32(), options, message.cars);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: CarsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.Cars cars = 1; */
+        if (message.cars)
+            Cars.internalBinaryWrite(message.cars, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.CarsResponse
+ */
+export const CarsResponse = new CarsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListCarsResponse$Type extends MessageType<ListCarsResponse> {
+    constructor() {
+        super("ryohi.ListCarsResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Cars },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListCarsResponse>): ListCarsResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListCarsResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListCarsResponse): ListCarsResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.Cars items */ 1:
+                    message.items.push(Cars.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListCarsResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.Cars items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            Cars.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListCarsResponse
+ */
+export const ListCarsResponse = new ListCarsResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDriversRequest$Type extends MessageType<GetDriversRequest> {
+    constructor() {
+        super("ryohi.GetDriversRequest", [
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDriversRequest>): GetDriversRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetDriversRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDriversRequest): GetDriversRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDriversRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDriversRequest
+ */
+export const GetDriversRequest = new GetDriversRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetDriversByBumonRequest$Type extends MessageType<GetDriversByBumonRequest> {
+    constructor() {
+        super("ryohi.GetDriversByBumonRequest", [
+            { no: 1, name: "bumon", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetDriversByBumonRequest>): GetDriversByBumonRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.bumon = "";
+        if (value !== undefined)
+            reflectionMergePartial<GetDriversByBumonRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetDriversByBumonRequest): GetDriversByBumonRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string bumon */ 1:
+                    message.bumon = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetDriversByBumonRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string bumon = 1; */
+        if (message.bumon !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.bumon);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.GetDriversByBumonRequest
+ */
+export const GetDriversByBumonRequest = new GetDriversByBumonRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDriversRequest$Type extends MessageType<ListDriversRequest> {
+    constructor() {
+        super("ryohi.ListDriversRequest", [
+            { no: 1, name: "limit", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "offset", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "order_by", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDriversRequest>): ListDriversRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.limit = 0;
+        message.offset = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDriversRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDriversRequest): ListDriversRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 limit */ 1:
+                    message.limit = reader.int32();
+                    break;
+                case /* int32 offset */ 2:
+                    message.offset = reader.int32();
+                    break;
+                case /* optional string order_by */ 3:
+                    message.orderBy = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDriversRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 limit = 1; */
+        if (message.limit !== 0)
+            writer.tag(1, WireType.Varint).int32(message.limit);
+        /* int32 offset = 2; */
+        if (message.offset !== 0)
+            writer.tag(2, WireType.Varint).int32(message.offset);
+        /* optional string order_by = 3; */
+        if (message.orderBy !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.orderBy);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDriversRequest
+ */
+export const ListDriversRequest = new ListDriversRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DriversResponse$Type extends MessageType<DriversResponse> {
+    constructor() {
+        super("ryohi.DriversResponse", [
+            { no: 1, name: "drivers", kind: "message", T: () => Drivers }
+        ]);
+    }
+    create(value?: PartialMessage<DriversResponse>): DriversResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<DriversResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DriversResponse): DriversResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ryohi.Drivers drivers */ 1:
+                    message.drivers = Drivers.internalBinaryRead(reader, reader.uint32(), options, message.drivers);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: DriversResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* ryohi.Drivers drivers = 1; */
+        if (message.drivers)
+            Drivers.internalBinaryWrite(message.drivers, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.DriversResponse
+ */
+export const DriversResponse = new DriversResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListDriversResponse$Type extends MessageType<ListDriversResponse> {
+    constructor() {
+        super("ryohi.ListDriversResponse", [
+            { no: 1, name: "items", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Drivers },
+            { no: 2, name: "total_count", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListDriversResponse>): ListDriversResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.items = [];
+        message.totalCount = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListDriversResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListDriversResponse): ListDriversResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated ryohi.Drivers items */ 1:
+                    message.items.push(Drivers.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* int32 total_count */ 2:
+                    message.totalCount = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListDriversResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated ryohi.Drivers items = 1; */
+        for (let i = 0; i < message.items.length; i++)
+            Drivers.internalBinaryWrite(message.items[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* int32 total_count = 2; */
+        if (message.totalCount !== 0)
+            writer.tag(2, WireType.Varint).int32(message.totalCount);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ryohi.ListDriversResponse
+ */
+export const ListDriversResponse = new ListDriversResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class Empty$Type extends MessageType<Empty> {
     constructor() {
         super("ryohi.Empty", []);
@@ -2975,4 +7072,60 @@ export const ETCMeisaiMappingService = new ServiceType("ryohi.ETCMeisaiMappingSe
     { name: "Delete", options: { "google.api.http": { delete: "/api/v1/db/etc-meisai-mapping/{id}" } }, I: DeleteETCMeisaiMappingRequest, O: Empty },
     { name: "List", options: { "google.api.http": { get: "/api/v1/db/etc-meisai-mapping" } }, I: ListETCMeisaiMappingRequest, O: ListETCMeisaiMappingResponse },
     { name: "GetDTakoRowIDByHash", options: { "google.api.http": { get: "/api/v1/db/etc-meisai-mapping/by-hash/{etc_meisai_hash}" } }, I: GetDTakoRowIDByHashRequest, O: GetDTakoRowIDByHashResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.DTakoCarsService
+ */
+export const DTakoCarsService = new ServiceType("ryohi.DTakoCarsService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/dtako-cars/{id}" } }, I: GetDTakoCarsRequest, O: DTakoCarsResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/dtako-cars" } }, I: ListDTakoCarsRequest, O: ListDTakoCarsResponse },
+    { name: "GetByCarCode", options: { "google.api.http": { get: "/api/v1/db/dtako-cars/by-car-code/{car_code}" } }, I: GetDTakoCarsByCarCodeRequest, O: DTakoCarsResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.DTakoEventsService
+ */
+export const DTakoEventsService = new ServiceType("ryohi.DTakoEventsService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/dtako-events/{id}" } }, I: GetDTakoEventsRequest, O: DTakoEventsResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/dtako-events" } }, I: ListDTakoEventsRequest, O: ListDTakoEventsResponse },
+    { name: "GetByOperationNo", options: { "google.api.http": { get: "/api/v1/db/dtako-events/by-operation-no/{operation_no}" } }, I: GetDTakoEventsByOperationNoRequest, O: ListDTakoEventsResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.DTakoRowsService
+ */
+export const DTakoRowsService = new ServiceType("ryohi.DTakoRowsService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/dtako-rows/{id}" } }, I: GetDTakoRowsRequest, O: DTakoRowsResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/dtako-rows" } }, I: ListDTakoRowsRequest, O: ListDTakoRowsResponse },
+    { name: "GetByOperationNo", options: { "google.api.http": { get: "/api/v1/db/dtako-rows/by-operation-no/{operation_no}" } }, I: GetDTakoRowsByOperationNoRequest, O: ListDTakoRowsResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.ETCNumService
+ */
+export const ETCNumService = new ServiceType("ryohi.ETCNumService", [
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/etc-num" } }, I: ListETCNumRequest, O: ListETCNumResponse },
+    { name: "GetByETCCardNum", options: { "google.api.http": { get: "/api/v1/db/etc-num/by-etc-card-num/{etc_card_num}" } }, I: GetETCNumByETCCardNumRequest, O: ListETCNumResponse },
+    { name: "GetByCarID", options: { "google.api.http": { get: "/api/v1/db/etc-num/by-car-id/{car_id}" } }, I: GetETCNumByCarIDRequest, O: ListETCNumResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.DTakoFerryRowsProdService
+ */
+export const DTakoFerryRowsProdService = new ServiceType("ryohi.DTakoFerryRowsProdService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/dtako-ferry-rows-prod/{id}" } }, I: GetDTakoFerryRowsProdRequest, O: DTakoFerryRowsProdResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/dtako-ferry-rows-prod" } }, I: ListDTakoFerryRowsProdRequest, O: ListDTakoFerryRowsProdResponse },
+    { name: "GetByUnkoNo", options: { "google.api.http": { get: "/api/v1/db/dtako-ferry-rows-prod/by-unko-no/{unko_no}" } }, I: GetDTakoFerryRowsProdByUnkoNoRequest, O: ListDTakoFerryRowsProdResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.CarsService
+ */
+export const CarsService = new ServiceType("ryohi.CarsService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/cars/{id}" } }, I: GetCarsRequest, O: CarsResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/cars" } }, I: ListCarsRequest, O: ListCarsResponse },
+    { name: "GetByBumonCodeID", options: { "google.api.http": { get: "/api/v1/db/cars/bumon/{bumon_code_id}" } }, I: GetCarsByBumonCodeIDRequest, O: ListCarsResponse }
+]);
+/**
+ * @generated ServiceType for protobuf service ryohi.DriversService
+ */
+export const DriversService = new ServiceType("ryohi.DriversService", [
+    { name: "Get", options: { "google.api.http": { get: "/api/v1/db/drivers/{id}" } }, I: GetDriversRequest, O: DriversResponse },
+    { name: "List", options: { "google.api.http": { get: "/api/v1/db/drivers" } }, I: ListDriversRequest, O: ListDriversResponse },
+    { name: "GetByBumon", options: { "google.api.http": { get: "/api/v1/db/drivers/bumon/{bumon}" } }, I: GetDriversByBumonRequest, O: ListDriversResponse }
 ]);
